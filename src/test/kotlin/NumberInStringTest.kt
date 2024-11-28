@@ -123,4 +123,31 @@ class NumberInStringTest {
 
         assertEquals(number, "1")
     }
+
+    @Test
+    fun `convert all number as text to number as digit 22`() {
+        val text = "twotwo"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals(number, "22")
+    }
+
+    @Test
+    fun `convert all number as text to number as digit 345`() {
+        val text = "three3four4five5"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals(number, "334455")
+    }
+
+    @Test
+    fun `convert all number as text to number as digit 6789`() {
+        val text = "6sixseven7asdf8eight99ninine9"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals(number, "6677asdf8899ni99")
+    }
 }
