@@ -23,5 +23,9 @@ class NumberInString {
         val funSumFirstAndLastDigit: (text: String) -> Int = { text: String ->
             findFirstNumberInText(text) + findLastNumberInText(text)
         }
+
+        val funGetFirstAndLastDigit: (text: String) -> Int = { text: String ->
+            findFirstNumberInText(text) * 10 + findLastNumberInText(text)
+        }
     }
 }
