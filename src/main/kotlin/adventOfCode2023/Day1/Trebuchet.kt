@@ -1,4 +1,4 @@
-package org.example.adventOfCode2023_1
+package org.example.adventOfCode2023.Day1
 
 import org.example.NumberInString.Companion.funGetFirstAndLastDigit
 
