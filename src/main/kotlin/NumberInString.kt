@@ -27,5 +27,9 @@ class NumberInString {
         val funGetFirstAndLastDigit: (text: String) -> Int = { text: String ->
             findFirstNumberInText(text) * 10 + findLastNumberInText(text)
         }
+
+        val funConvertToNumber: (text: String) -> String = { text: String ->
+            text.replace("one", "1")
+        }
     }
 }

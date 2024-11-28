@@ -1,5 +1,6 @@
 import org.example.NumberInString.Companion.findFirstNumberInText
 import org.example.NumberInString.Companion.findLastNumberInText
+import org.example.NumberInString.Companion.funConvertToNumber
 import org.example.NumberInString.Companion.funGetFirstAndLastDigit
 import org.example.NumberInString.Companion.funSumFirstAndLastDigit
 import org.junit.jupiter.api.Test
@@ -112,5 +113,14 @@ class NumberInStringTest {
         val number = funGetFirstAndLastDigit(text)
 
         assertEquals(number, 0)
+    }
+
+    @Test
+    fun `convert all number as text to number as digit`() {
+        val text = "one"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals(number, "1")
     }
 }
