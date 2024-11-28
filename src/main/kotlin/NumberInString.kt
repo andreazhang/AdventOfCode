@@ -11,5 +11,14 @@ class NumberInString {
             }
             return 0
         }
+
+        fun findLastNumberInText(text: String): Int {
+            for (char in text.reversed()) {
+                if (char.isDigit()) {
+                    return char.digitToInt()
+                }
+            }
+            return 0
+        }
     }
 }
