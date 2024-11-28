@@ -21,8 +21,8 @@ class TrebuchetTest {
     @Test
     fun `get calibration value from basic file with 4 lines`() {
         val input =
-            TrebuchetTest::class.java.getResource("/numberInString/oneline.txt")?.readText()
-                ?: fail("No oneline.txt file found")
+            TrebuchetTest::class.java.getResource("/numberInString/basic.txt")?.readText()
+                ?: fail("No basic.txt file found")
 
         val sum = calibrateValue(input)
 
