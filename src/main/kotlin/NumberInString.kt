@@ -20,5 +20,9 @@ class NumberInString {
             }
             return 0
         }
+
+        fun sumFirstAndLastDigit(text: String): Int {
+            return findFirstNumberInText(text) + findLastNumberInText(text)
+        }
     }
 }

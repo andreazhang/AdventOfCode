@@ -1,5 +1,6 @@
 import org.example.NumberInString.Companion.findFirstNumberInText
 import org.example.NumberInString.Companion.findLastNumberInText
+import org.example.NumberInString.Companion.sumFirstAndLastDigit
 import org.junit.jupiter.api.Test;
 import kotlin.test.assertEquals
 
@@ -57,5 +58,32 @@ class NumberInStringTest {
         val number = findFirstNumberInText(text)
 
         assertEquals(number, 0)
+    }
+
+    @Test
+    fun `calculate the sum of the first and last number in text return 0`() {
+        val text = "asdf"
+
+        val number = sumFirstAndLastDigit(text)
+
+        assertEquals(number, 0)
+    }
+
+    @Test
+    fun `calculate the sum of the first and last number in text return sum`() {
+        val text = "1as2df"
+
+        val number = sumFirstAndLastDigit(text)
+
+        assertEquals(number, 3)
+    }
+
+    @Test
+    fun `calculate the sum of the first and last number in text single digit`() {
+        val text = "asdf4"
+
+        val number = sumFirstAndLastDigit(text)
+
+        assertEquals(number, 8)
     }
 }
