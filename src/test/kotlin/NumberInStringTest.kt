@@ -152,11 +152,29 @@ class NumberInStringTest {
     }
 
     @Test
-    fun `convert all number as text to number as digit in order`() {
+    fun `convert all number as text to number as digit in order 2`() {
         val text = "twone"
 
         val number = funConvertToNumber(text)
 
         assertEquals("2ne", number)
+    }
+
+    @Test
+    fun `convert all number as text to number as digit in order `() {
+        val text = "eighthree"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals("83", number)
+    }
+
+    @Test
+    fun `convert all number as text to number as digit in order exception`() {
+        val text = "eone"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals("e1", number)
     }
 }

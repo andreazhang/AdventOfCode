@@ -25,10 +25,14 @@ class NumberInString {
         }
 
         val funGetFirstAndLastDigit: (text: String) -> Int = { text: String ->
-            findFirstNumberInText(text) * 10 + findLastNumberInText(text)
+            println(text)
+            val i = findFirstNumberInText(text) * 10 + findLastNumberInText(text)
+            println(i)
+            i
         }
 
         val funConvertToNumber: (text: String) -> String = { text: String ->
+            println(text)
             var newText = ""
             var i = 0
             while (i < text.length) {
@@ -81,6 +85,7 @@ class NumberInString {
                 }
 
             }
+            println(newText)
             newText
         }
     }
