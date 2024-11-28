@@ -1,7 +1,6 @@
 package org.example
 
 class NumberInString {
-
     companion object {
         fun findFirstNumberInText(text: String): Int {
             for (char in text) {
@@ -21,8 +20,6 @@ class NumberInString {
             return 0
         }
 
-        fun sumFirstAndLastDigit(text: String): Int {
-            return findFirstNumberInText(text) + findLastNumberInText(text)
-        }
+        fun sumFirstAndLastDigit(text: String): Int = findFirstNumberInText(text) + findLastNumberInText(text)
     }
 }

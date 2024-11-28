@@ -1,11 +1,10 @@
 import org.example.NumberInString.Companion.findFirstNumberInText
 import org.example.NumberInString.Companion.findLastNumberInText
 import org.example.NumberInString.Companion.sumFirstAndLastDigit
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class NumberInStringTest {
-
     @Test
     fun `find first number in text`() {
         val text = "1asdf"
