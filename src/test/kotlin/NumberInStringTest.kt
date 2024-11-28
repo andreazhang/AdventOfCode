@@ -13,7 +13,7 @@ class NumberInStringTest {
 
         val number = findFirstNumberInText(text)
 
-        assertEquals(number, 1)
+        assertEquals(1, number)
     }
 
     @Test
@@ -22,7 +22,7 @@ class NumberInStringTest {
 
         val number = findFirstNumberInText(text)
 
-        assertEquals(number, 2)
+        assertEquals(2, number)
     }
 
     @Test
@@ -31,7 +31,7 @@ class NumberInStringTest {
 
         val number = findFirstNumberInText(text)
 
-        assertEquals(number, 0)
+        assertEquals(0, number)
     }
 
     @Test
@@ -40,7 +40,7 @@ class NumberInStringTest {
 
         val number = findLastNumberInText(text)
 
-        assertEquals(number, 1)
+        assertEquals(1, number)
     }
 
     @Test
@@ -49,7 +49,7 @@ class NumberInStringTest {
 
         val number = findFirstNumberInText(text)
 
-        assertEquals(number, 2)
+        assertEquals(2, number)
     }
 
     @Test
@@ -58,7 +58,7 @@ class NumberInStringTest {
 
         val number = findFirstNumberInText(text)
 
-        assertEquals(number, 0)
+        assertEquals(0, number)
     }
 
     @Test
@@ -67,7 +67,7 @@ class NumberInStringTest {
 
         val number = funSumFirstAndLastDigit(text)
 
-        assertEquals(number, 0)
+        assertEquals(0, number)
     }
 
     @Test
@@ -76,7 +76,7 @@ class NumberInStringTest {
 
         val number = funSumFirstAndLastDigit(text)
 
-        assertEquals(number, 3)
+        assertEquals(3, number)
     }
 
     @Test
@@ -85,7 +85,7 @@ class NumberInStringTest {
 
         val number = funSumFirstAndLastDigit(text)
 
-        assertEquals(number, 8)
+        assertEquals(8, number)
     }
 
     @Test
@@ -94,7 +94,7 @@ class NumberInStringTest {
 
         val number = funGetFirstAndLastDigit(text)
 
-        assertEquals(number, 14)
+        assertEquals(14, number)
     }
 
     @Test
@@ -103,7 +103,7 @@ class NumberInStringTest {
 
         val number = funGetFirstAndLastDigit(text)
 
-        assertEquals(number, 22)
+        assertEquals(22, number)
     }
 
     @Test
@@ -112,16 +112,16 @@ class NumberInStringTest {
 
         val number = funGetFirstAndLastDigit(text)
 
-        assertEquals(number, 0)
+        assertEquals(0, number)
     }
 
     @Test
-    fun `convert all number as text to number as digit`() {
+    fun `convert all number as text to number as digit 1`() {
         val text = "one"
 
         val number = funConvertToNumber(text)
 
-        assertEquals(number, "1")
+        assertEquals("1", number)
     }
 
     @Test
@@ -130,7 +130,7 @@ class NumberInStringTest {
 
         val number = funConvertToNumber(text)
 
-        assertEquals(number, "22")
+        assertEquals("22", number)
     }
 
     @Test
@@ -139,7 +139,7 @@ class NumberInStringTest {
 
         val number = funConvertToNumber(text)
 
-        assertEquals(number, "334455")
+        assertEquals("334455", number)
     }
 
     @Test
@@ -148,6 +148,15 @@ class NumberInStringTest {
 
         val number = funConvertToNumber(text)
 
-        assertEquals(number, "6677asdf8899ni99")
+        assertEquals("6677asdf8899ni99", number)
+    }
+
+    @Test
+    fun `convert all number as text to number as digit in order`() {
+        val text = "twone"
+
+        val number = funConvertToNumber(text)
+
+        assertEquals("2ne", number)
     }
 }
