@@ -7,10 +7,23 @@ class GearRation {
             val maxRow = matrix.size - 1
             val maxCol = matrix[0].size - 1
 
+            var number = 0
+            var isGear = false
+
             matrix.forEachIndexed { r, row ->
                 row.forEachIndexed { c, col ->
-                    if (matrix[r][c].isDigit() && isSurroundedBySymbol(matrix, r, c, maxRow, maxCol)) {
-                        gears.add(matrix[r][c].digitToInt())
+                    val isDigit = matrix[r][c].isDigit()
+                    if (isDigit && isSurroundedBySymbol(matrix, r, c, maxRow, maxCol)) {
+                        isGear = true
+                    }
+                    if (isDigit) {
+                        number = (number * 10) + matrix[r][c].digitToInt()
+                    }
+                    if (!isDigit || c == maxCol) {
+                        if (isGear) {
+                            gears.add(number)
+                            isGear = false
+                        }
                     }
                 }
             }

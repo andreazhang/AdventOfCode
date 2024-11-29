@@ -57,7 +57,7 @@ class GearRatiosTest {
     }
 
     @Test
-    fun `a number is a gear if it's adjacent to a symbol`() {
+    fun `a number is a gear if it's left of a symbol`() {
         val input = "1*"
         val matrix = readMatrix(input)
 
@@ -67,7 +67,7 @@ class GearRatiosTest {
     }
 
     @Test
-    fun `a number is a gear if it's after a symbol`() {
+    fun `a number is a gear if it's right of a symbol`() {
         val input = "/2"
         val matrix = readMatrix(input)
 
