@@ -192,12 +192,32 @@ class GearRatiosTest {
     }
 
     @Test
-    fun `calculate start gear ratio`() {
+    fun `calculate start gear ratio return 0 if only one gear is found`() {
+        val input = "3*."
+        val matrix = readMatrix(input)
+
+        val ratio = calculateGearRatio(matrix)
+
+        assertEquals(9, ratio)
+    }
+
+    @Test
+    fun `calculate start gear ratio left and right`() {
         val input = "3*2"
         val matrix = readMatrix(input)
 
         val ratio = calculateGearRatio(matrix)
 
         assertEquals(6, ratio)
+    }
+
+    @Test
+    fun `calculate start gear ratio up and down`() {
+        val input = "3\n*\n3"
+        val matrix = readMatrix(input)
+
+        val ratio = calculateGearRatio(matrix)
+
+        assertEquals(9, ratio)
     }
 }

@@ -3,11 +3,39 @@ package org.example.adventOfCode2023.day3
 class GearRation {
     companion object {
         fun calculateGearRatio(matrix: Array<Array<Char>>): Int {
+            val maxRow = matrix.size - 1
+            val maxCol = matrix[0].size - 1
+            var ratio = 0
+
             matrix.forEachIndexed { r, row ->
-                row.forEachIndexed { c, col -> if (matrix[r][c] == '*') {} }
+                row.forEachIndexed { c, col ->
+                    if (matrix[r][c] == '*') {
+                        val right = matrix[r][(c + 1).coerceAtMost(maxCol)]
+                        val left = matrix[r][(c - 1).coerceAtLeast(0)]
+                        val down = matrix[(r + 1).coerceAtMost(maxRow)][c]
+                        val up = matrix[(r - 1).coerceAtLeast(0)][c]
+                        val upLeft = matrix[(r - 1).coerceAtLeast(0)][(c - 1).coerceAtLeast(0)]
+                        val upRight = matrix[(r - 1).coerceAtLeast(0)][(c + 1).coerceAtMost(maxCol)]
+                        val downLeft = matrix[(r + 1).coerceAtMost(maxRow)][(c - 1).coerceAtLeast(0)]
+                        val downRight = matrix[(r + 1).coerceAtMost(maxRow)][(c + 1).coerceAtMost(maxCol)]
+                        val directions = listOf(right, left, down, up, upLeft, upRight, downLeft, downRight)
+                        var a = 0
+                        var b = 0
+
+                        directions.forEach {
+                            if (it.isDigit() && a == 0) {
+                                a = it.digitToInt()
+                            } else if (it.isDigit() && b == 0) {
+                                b = it.digitToInt()
+                            }
+                        }
+
+                        ratio += a * b
+                    }
+                }
             }
 
-            return 0
+            return ratio
         }
 
         fun getGearsNextToSymbol(matrix: Array<Array<Char>>): List<Int> {
@@ -57,13 +85,13 @@ class GearRation {
             val downLeft = matrix[(r + 1).coerceAtMost(maxRow)][(c - 1).coerceAtLeast(0)]
             val downRight = matrix[(r + 1).coerceAtMost(maxRow)][(c + 1).coerceAtMost(maxCol)]
             return isSymbol(right) ||
-                isSymbol(left) ||
-                isSymbol(down) ||
-                isSymbol(up) ||
-                isSymbol(upLeft) ||
-                isSymbol(upRight) ||
-                isSymbol(downLeft) ||
-                isSymbol(downRight)
+                    isSymbol(left) ||
+                    isSymbol(down) ||
+                    isSymbol(up) ||
+                    isSymbol(upLeft) ||
+                    isSymbol(upRight) ||
+                    isSymbol(downLeft) ||
+                    isSymbol(downRight)
         }
 
         fun readMatrix(input: String): Array<Array<Char>> {
