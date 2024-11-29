@@ -137,6 +137,16 @@ class GearRatiosTest {
     }
 
     @Test
+    fun `multiple digit next to each other count together as gear`() {
+        val input = "+123-"
+        val matrix = readMatrix(input)
+
+        val gears = isAdjacentToSymbol(matrix)
+
+        assertEquals(listOf(123), gears)
+    }
+
+    @Test
     fun `a number is not a gear if it's not adjacent to a symbol`() {
         val input = "1.$"
         val matrix = readMatrix(input)

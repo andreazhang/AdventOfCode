@@ -60,6 +60,6 @@ class GearRation {
             return matrix
         }
 
-        private fun isSymbol(char: Char): Boolean = "$%&*/=#@".contains(char)
+        private fun isSymbol(char: Char): Boolean = "$%&*/=#@-+".contains(char)
     }
 }
