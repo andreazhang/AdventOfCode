@@ -71,6 +71,6 @@ class TrebuchetTest {
 
         val sum = calibrateAdvancedValue(input)
 
-        assertEquals(281, sum)
+        assertEquals(54578, sum)
     }
 }

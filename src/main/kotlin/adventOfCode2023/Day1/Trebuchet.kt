@@ -1,6 +1,6 @@
 package org.example.adventOfCode2023.Day1
 
-import org.example.NumberInString.Companion.funConvertToNumber
+import org.example.NumberInString.Companion.funAddDigitBeforeNumber
 import org.example.NumberInString.Companion.funGetFirstAndLastDigit
 
 class Trebuchet {
@@ -14,7 +14,7 @@ class Trebuchet {
     fun calibrateAdvancedValue(input: String): Int {
       return input
         .split("\n")
-        .map(funConvertToNumber)
+        .map(funAddDigitBeforeNumber)
         .map(funGetFirstAndLastDigit)
         .sum()
     }

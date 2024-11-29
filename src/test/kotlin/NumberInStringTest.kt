@@ -1,6 +1,6 @@
 import org.example.NumberInString.Companion.findFirstNumberInText
 import org.example.NumberInString.Companion.findLastNumberInText
-import org.example.NumberInString.Companion.funConvertToNumber
+import org.example.NumberInString.Companion.funAddDigitBeforeNumber
 import org.example.NumberInString.Companion.funGetFirstAndLastDigit
 import org.example.NumberInString.Companion.funSumFirstAndLastDigit
 import org.junit.jupiter.api.Test
@@ -119,62 +119,62 @@ class NumberInStringTest {
     fun `convert all number as text to number as digit 1`() {
         val text = "one"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("1", number)
+        assertEquals("1one", number)
     }
 
     @Test
     fun `convert all number as text to number as digit 22`() {
         val text = "twotwo"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("22", number)
+        assertEquals("2two2two", number)
     }
 
     @Test
     fun `convert all number as text to number as digit 345`() {
         val text = "three3four4five5"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("334455", number)
+        assertEquals("3three34four45five5", number)
     }
 
     @Test
     fun `convert all number as text to number as digit 6789`() {
         val text = "6sixseven7asdf8eight99ninine9"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("6677asdf8899ni99", number)
+        assertEquals("66six7seven7asdf88eight99ni9nine9", number)
     }
 
     @Test
     fun `convert all number as text to number as digit in order 2`() {
         val text = "twone"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("2ne", number)
+        assertEquals("2tw1one", number)
     }
 
     @Test
     fun `convert all number as text to number as digit in order `() {
         val text = "eighthree"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("83", number)
+        assertEquals("8eigh3three", number)
     }
 
     @Test
     fun `convert all number as text to number as digit in order exception`() {
         val text = "eone"
 
-        val number = funConvertToNumber(text)
+        val number = funAddDigitBeforeNumber(text)
 
-        assertEquals("e1", number)
+        assertEquals("e1one", number)
     }
 }
