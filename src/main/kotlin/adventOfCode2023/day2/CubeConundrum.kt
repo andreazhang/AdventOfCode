@@ -20,7 +20,7 @@ class CubeConundrum {
         }
 
         fun parseGames(input: String): List<Game> {
-            TODO()
+            return input.split("\n").filter { it.isNotEmpty() }.map { parseGame(it) }.toList()
         }
     }
 }

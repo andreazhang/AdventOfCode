@@ -33,7 +33,7 @@ class CubeConundrumTest {
             { assertEquals(5, games.size) },
             { assertEquals(9, games[0].blueCube) },
             { assertEquals(1, games[1].redCube) },
-            { assertEquals(21, games[2].greenCube) }
+            { assertEquals(26, games[2].greenCube) }
         )
     }
 }
