@@ -20,10 +20,12 @@ class GearRation {
                         number = (number * 10) + matrix[r][c].digitToInt()
                     }
                     if (!isDigit || c == maxCol) {
+                        // println("$number $isGear")
                         if (isGear) {
                             gears.add(number)
                             isGear = false
                         }
+                        number = 0
                     }
                 }
             }
@@ -69,7 +71,7 @@ class GearRation {
                     matrix[row][col] = splitInput[row][col]
                 }
             }
-            //            matrix.forEach { it.forEach { print("$it") }; println()  }
+            // matrix.forEach { it.forEach { print("$it") }; println()  }
             return matrix
         }
 

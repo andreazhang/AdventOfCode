@@ -147,6 +147,19 @@ class GearRatiosTest {
     }
 
     @Test
+    fun `handle gear and no gear`() {
+        val input = "467..114..\n" +
+                    "...*......\n" +
+                    "..35..633."
+        val matrix = readMatrix(input)
+
+        val gears = isAdjacentToSymbol(matrix)
+        gears.forEach{ println(it) }
+
+        assertEquals(listOf(467, 35), gears)
+    }
+
+    @Test
     fun `a number is not a gear if it's not adjacent to a symbol`() {
         val input = "1.$"
         val matrix = readMatrix(input)
@@ -154,5 +167,18 @@ class GearRatiosTest {
         val gears = isAdjacentToSymbol(matrix)
 
         assertEquals(listOf(), gears)
+    }
+
+    @Test
+    fun `sum gears basic`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2023/day3/basic.txt")?.readText() ?: fail()
+        val matrix = readMatrix(input)
+        val gears = isAdjacentToSymbol(matrix)
+        gears.forEach{ println(it) }
+
+        val sum = gears.sum()
+
+        assertEquals(4361, sum)
     }
 }
