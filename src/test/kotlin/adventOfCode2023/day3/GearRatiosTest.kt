@@ -5,8 +5,6 @@ import org.example.adventOfCode2023.day3.GearRation.Companion.readMatrix
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 import kotlin.test.fail
 
 class GearRatiosTest {
@@ -32,27 +30,29 @@ class GearRatiosTest {
 
     @Test
     fun `parse basic string to matrix`() {
-        val input = this::class.java.getResource("/adventOfCode2023/day3/basic.txt")?.readText() ?: fail()
+        val input =
+            this::class.java.getResource("/adventOfCode2023/day3/basic.txt")?.readText() ?: fail()
 
         val matrix = readMatrix(input)
 
-        assertAll(
-            { assertEquals('4', matrix[0][0]) },
+        assertAll({ assertEquals('4', matrix[0][0]) },
             { assertEquals('*', matrix[4][3]) },
-            { assertEquals('.', matrix[9][9]) }
+            { assertEquals('.', matrix[9][9]) },
         )
     }
 
     @Test
     fun `parse full string to matrix`() {
-        val input = this::class.java.getResource("/adventOfCode2023/day3/full.txt")?.readText() ?: fail()
+        val input =
+            this::class.java.getResource("/adventOfCode2023/day3/full.txt")?.readText() ?: fail()
 
         val matrix = readMatrix(input)
 
-        assertAll("matrix",
+        assertAll(
+            "matrix",
             { assertEquals('.', matrix[0][0]) },
             { assertEquals('6', matrix[1][3]) },
-            { assertEquals('*', matrix[19][23]) }
+            { assertEquals('*', matrix[19][23]) },
         )
     }
 
@@ -64,6 +64,16 @@ class GearRatiosTest {
         val gears = isAdjacentToSymbol(matrix)
 
         assertEquals(listOf(1), gears)
+    }
+
+    @Test
+    fun `a number is a gear if it's after a symbol`() {
+        val input = "/2"
+        val matrix = readMatrix(input)
+
+        val gears = isAdjacentToSymbol(matrix)
+
+        assertEquals(listOf(2), gears)
     }
 
     @Test
