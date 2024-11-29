@@ -25,7 +25,7 @@ class CubeConundrumTest {
 
     @Test
     fun `parse multiple games`() {
-        val input = this::class.java.getResource("/day2/basic.txt")?.readText() ?: fail()
+        val input = this::class.java.getResource("/adventOfCode2023/day2/basic.txt")?.readText() ?: fail()
 
         val games = parseGames(input)
 
