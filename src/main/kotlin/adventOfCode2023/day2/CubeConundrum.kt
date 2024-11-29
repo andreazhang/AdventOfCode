@@ -2,6 +2,10 @@ package org.example.adventOfCode2023.day2
 
 class CubeConundrum {
     companion object {
+        private const val MAX_BLUE_CUBES = 14
+        private const val MAX_RED_CUBES = 12
+        private const val MAX_GREEN_CUBES = 13
+
         fun parseGame(input: String): Game {
             val gameId = input.split(" ")[1].removeSuffix(":").toInt()
             var blueCube = 0
@@ -24,7 +28,9 @@ class CubeConundrum {
         }
 
         fun calculateTotal(games: List<Game>): Int {
-            TODO()
+            return games
+                .filter { it.blueCube < MAX_BLUE_CUBES && it.redCube < MAX_RED_CUBES && it.greenCube < MAX_GREEN_CUBES }
+                .sumOf { it.id }
         }
     }
 }
