@@ -59,18 +59,20 @@ class GearRatiosTest {
     @Test
     fun `a number is a gear if it's adjacent to a symbol`() {
         val input = "1*"
+        val matrix = readMatrix(input)
 
-        val adjacent = isAdjacentToSymbol(input)
+        val gears = isAdjacentToSymbol(matrix)
 
-        assertTrue(adjacent)
+        assertEquals(listOf(1), gears)
     }
 
     @Test
     fun `a number is not a gear if it's not adjacent to a symbol`() {
         val input = "1."
+        val matrix = readMatrix(input)
 
-        val adjacent = isAdjacentToSymbol(input)
+        val gears = isAdjacentToSymbol(matrix)
 
-        assertFalse(adjacent)
+        assertEquals(listOf(), gears)
     }
 }

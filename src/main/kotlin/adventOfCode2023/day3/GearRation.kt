@@ -2,13 +2,18 @@ package org.example.adventOfCode2023.day3
 
 class GearRation {
     companion object {
-        fun isAdjacentToSymbol(input: String): Boolean {
-            for (i in 1..input.length) {
-                if (input[i].isDigit() && input[i+1] == '*') {
-                    return true
+        fun isAdjacentToSymbol(matrix: Array<Array<Char>>): List<Int> {
+            var gears = mutableListOf<Int>()
+
+            matrix.forEachIndexed { r, row ->
+                row.forEachIndexed { c, col ->
+                    if (matrix[r][c].isDigit()) {
+                        gears.add(matrix[r][c].digitToInt())
+                    }
                 }
             }
-            return false
+
+            return gears
         }
 
         fun readMatrix(input: String): Array<Array<Char>> {
@@ -20,10 +25,10 @@ class GearRation {
 //            matrix.forEach { it.forEach { print("$it") } }
 //            println("x ${matrix.indices}")
 //            println("y ${matrix[0].indices}")
-            for (line in matrix.indices) {
-                for (col in matrix[line].indices) {
+            for (row in matrix.indices) {
+                for (col in matrix[row].indices) {
 //                    println("xy $col-$line")
-                    matrix[line][col] = splitInput[line][col]
+                    matrix[row][col] = splitInput[row][col]
                 }
             }
 //            matrix.forEach { it.forEach { print("$it") }; println()  }
