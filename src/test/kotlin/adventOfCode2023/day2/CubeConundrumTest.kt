@@ -11,16 +11,16 @@ import kotlin.test.fail
 class CubeConundrumTest {
 
     @Test
-    fun `calculate cube quantity given input string`() {
+    fun `calculate max number of each colour seen each game turn`() {
         val input = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"
 
         val game = parseGame(input)
 
         assertAll("game has correct properties",
             { assertEquals(1, game.id) },
-            { assertEquals(9, game.blueCube) },
-            { assertEquals(5, game.redCube) },
-            { assertEquals(4, game.greenCube) }
+            { assertEquals(6, game.blueCube) },
+            { assertEquals(4, game.redCube) },
+            { assertEquals(2, game.greenCube) }
         )
     }
 
@@ -32,9 +32,9 @@ class CubeConundrumTest {
 
         assertAll("games has correct properties",
             { assertEquals(5, games.size) },
-            { assertEquals(9, games[0].blueCube) },
+            { assertEquals(6, games[0].blueCube) },
             { assertEquals(1, games[1].redCube) },
-            { assertEquals(26, games[2].greenCube) }
+            { assertEquals(13, games[2].greenCube) }
         )
     }
 
@@ -46,5 +46,15 @@ class CubeConundrumTest {
         val total = calculateTotal(games)
 
         assertEquals(8, total)
+    }
+
+    @Test
+    fun `calculate sum of games with restricted number of available cubes full input`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day2/full.txt")?.readText() ?: fail()
+        val games = parseGames(input)
+
+        val total = calculateTotal(games)
+
+        assertEquals(2268, total)
     }
 }

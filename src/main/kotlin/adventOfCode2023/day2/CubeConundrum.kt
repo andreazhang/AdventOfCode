@@ -14,9 +14,9 @@ class CubeConundrum {
 
             input.split(":")[1].replace(";", ",").split(",").forEach {
                 when {
-                    it.contains("blue") -> blueCube += it.trim().split(" ")[0].toInt()
-                    it.contains("red") -> redCube += it.trim().split(" ")[0].toInt()
-                    it.contains("green") -> greenCube += it.trim().split(" ")[0].toInt()
+                    it.contains("blue") -> blueCube = blueCube.coerceAtLeast(it.trim().split(" ")[0].toInt())
+                    it.contains("red") -> redCube = redCube.coerceAtLeast(it.trim().split(" ")[0].toInt())
+                    it.contains("green") -> greenCube = greenCube.coerceAtLeast(it.trim().split(" ")[0].toInt())
                 }
             }
 
@@ -28,13 +28,16 @@ class CubeConundrum {
         }
 
         fun calculateTotal(games: List<Game>): Int {
+            games.forEach{println(it)}
+            games.filter { it.blueCube <= MAX_BLUE_CUBES && it.redCube <= MAX_RED_CUBES && it.greenCube <= MAX_GREEN_CUBES }.forEach{println(it)}
+
             return games
-                .filter { it.blueCube < MAX_BLUE_CUBES && it.redCube < MAX_RED_CUBES && it.greenCube < MAX_GREEN_CUBES }
+                .filter { it.blueCube <= MAX_BLUE_CUBES && it.redCube <= MAX_RED_CUBES && it.greenCube <= MAX_GREEN_CUBES }
                 .sumOf { it.id }
         }
     }
 }
 
-class Game(val id: Int, val blueCube: Int, val redCube: Int, val greenCube: Int) {
+data class Game(val id: Int, val blueCube: Int, val redCube: Int, val greenCube: Int) {
 
 }
