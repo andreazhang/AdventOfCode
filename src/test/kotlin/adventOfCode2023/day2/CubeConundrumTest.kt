@@ -1,5 +1,6 @@
 package adventOfCode2023.day2
 
+import org.example.adventOfCode2023.day2.CubeConundrum.Companion.calculateTotal
 import org.example.adventOfCode2023.day2.CubeConundrum.Companion.parseGame
 import org.example.adventOfCode2023.day2.CubeConundrum.Companion.parseGames
 import org.junit.jupiter.api.Test;
@@ -35,5 +36,15 @@ class CubeConundrumTest {
             { assertEquals(1, games[1].redCube) },
             { assertEquals(26, games[2].greenCube) }
         )
+    }
+
+    @Test
+    fun `calculate sum of games with restricted number of available cubes`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day2/basic.txt")?.readText() ?: fail()
+        val games = parseGames(input)
+
+        val total = calculateTotal(games)
+
+        assertEquals(8, total)
     }
 }

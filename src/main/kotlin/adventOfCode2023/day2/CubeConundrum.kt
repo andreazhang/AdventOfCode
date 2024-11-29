@@ -22,6 +22,10 @@ class CubeConundrum {
         fun parseGames(input: String): List<Game> {
             return input.split("\n").filter { it.isNotEmpty() }.map { parseGame(it) }.toList()
         }
+
+        fun calculateTotal(games: List<Game>): Int {
+            TODO()
+        }
     }
 }
 
