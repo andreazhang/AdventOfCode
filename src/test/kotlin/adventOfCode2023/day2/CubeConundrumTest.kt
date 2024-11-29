@@ -68,4 +68,14 @@ class CubeConundrumTest {
 
         assertEquals(2286, total)
     }
+
+    @Test
+    fun `calculate sum of the power of each game set full input`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day2/full.txt")?.readText() ?: fail()
+        val games = parseGames(input)
+
+        val total = calculateSumOfPower(games)
+
+        assertEquals(63542, total)
+    }
 }
