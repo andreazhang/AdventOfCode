@@ -28,7 +28,13 @@ tasks.test {
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
         ktfmt()
-        ktlint()
+        ktlint("1.4.1")
+            .editorConfigOverride(
+                mapOf(
+                    "indent_size" to "4",
+                    "continuation_indent_size" to "4"
+                )
+            )
         diktat()
         prettier()
     }

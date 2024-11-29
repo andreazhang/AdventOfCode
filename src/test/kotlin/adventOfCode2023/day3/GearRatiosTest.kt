@@ -1,6 +1,7 @@
 package adventOfCode2023.day3
 
-import org.example.adventOfCode2023.day3.GearRation.Companion.isAdjacentToSymbol
+import org.example.adventOfCode2023.day3.GearRation.Companion.calculateGearRatio
+import org.example.adventOfCode2023.day3.GearRation.Companion.getGearsNextToSymbol
 import org.example.adventOfCode2023.day3.GearRation.Companion.readMatrix
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -61,7 +62,7 @@ class GearRatiosTest {
         val input = "1*"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(1), gears)
     }
@@ -71,7 +72,7 @@ class GearRatiosTest {
         val input = "/2"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(2), gears)
     }
@@ -81,7 +82,7 @@ class GearRatiosTest {
         val input = ".4\n.#"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(4), gears)
     }
@@ -91,7 +92,7 @@ class GearRatiosTest {
         val input = ".@\n.5"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(5), gears)
     }
@@ -101,7 +102,7 @@ class GearRatiosTest {
         val input = "%..\n.6."
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(6), gears)
     }
@@ -111,7 +112,7 @@ class GearRatiosTest {
         val input = "..=\n.7."
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(7), gears)
     }
@@ -121,7 +122,7 @@ class GearRatiosTest {
         val input = ".8.\n&.."
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(8), gears)
     }
@@ -131,7 +132,7 @@ class GearRatiosTest {
         val input = ".9.\n..$"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(9), gears)
     }
@@ -141,20 +142,17 @@ class GearRatiosTest {
         val input = "+123-"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(123), gears)
     }
 
     @Test
     fun `handle gear and no gear`() {
-        val input = "467..114..\n" +
-                    "...*......\n" +
-                    "..35..633."
+        val input = "467..114..\n...*......\n..35..633."
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
-        gears.forEach{ println(it) }
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(467, 35), gears)
     }
@@ -164,7 +162,7 @@ class GearRatiosTest {
         val input = "1.$"
         val matrix = readMatrix(input)
 
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         assertEquals(listOf(), gears)
     }
@@ -174,11 +172,11 @@ class GearRatiosTest {
         val input =
             this::class.java.getResource("/adventOfCode2023/day3/basic.txt")?.readText() ?: fail()
         val matrix = readMatrix(input)
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         val sum = gears.sum()
 
-        assertEquals(4361, sum)
+        assertEquals(4_361, sum)
     }
 
     @Test
@@ -186,10 +184,20 @@ class GearRatiosTest {
         val input =
             this::class.java.getResource("/adventOfCode2023/day3/full.txt")?.readText() ?: fail()
         val matrix = readMatrix(input)
-        val gears = isAdjacentToSymbol(matrix)
+        val gears = getGearsNextToSymbol(matrix)
 
         val sum = gears.sum()
 
-        assertEquals(512794, sum)
+        assertEquals(512_794, sum)
+    }
+
+    @Test
+    fun `calculate start gear ratio`() {
+        val input = "3*2"
+        val matrix = readMatrix(input)
+
+        val ratio = calculateGearRatio(matrix)
+
+        assertEquals(6, ratio)
     }
 }

@@ -2,7 +2,15 @@ package org.example.adventOfCode2023.day3
 
 class GearRation {
     companion object {
-        fun isAdjacentToSymbol(matrix: Array<Array<Char>>): List<Int> {
+        fun calculateGearRatio(matrix: Array<Array<Char>>): Int {
+            matrix.forEachIndexed { r, row ->
+                row.forEachIndexed { c, col -> if (matrix[r][c] == '*') {} }
+            }
+
+            return 0
+        }
+
+        fun getGearsNextToSymbol(matrix: Array<Array<Char>>): List<Int> {
             val gears = mutableListOf<Int>()
             val maxRow = matrix.size - 1
             val maxCol = matrix[0].size - 1
@@ -39,22 +47,24 @@ class GearRation {
             c: Int,
             maxRow: Int,
             maxCol: Int,
-        ) = // check on right
-            isSymbol(matrix[r][(c + 1).coerceAtMost(maxCol)]) ||
-                // check on left
-                isSymbol(matrix[r][(c - 1).coerceAtLeast(0)]) ||
-                // check below
-                isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][c]) ||
-                // check above
-                isSymbol(matrix[(r - 1).coerceAtLeast(0)][c]) ||
-                // check above left
-                isSymbol(matrix[(r - 1).coerceAtLeast(0)][(c - 1).coerceAtLeast(0)]) ||
-                // check above right
-                isSymbol(matrix[(r - 1).coerceAtLeast(0)][(c + 1).coerceAtMost(maxCol)]) ||
-                // check below left
-                isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][(c - 1).coerceAtLeast(0)]) ||
-                // check below right
-                isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][(c + 1).coerceAtMost(maxCol)])
+        ): Boolean {
+            val right = matrix[r][(c + 1).coerceAtMost(maxCol)]
+            val left = matrix[r][(c - 1).coerceAtLeast(0)]
+            val down = matrix[(r + 1).coerceAtMost(maxRow)][c]
+            val up = matrix[(r - 1).coerceAtLeast(0)][c]
+            val upLeft = matrix[(r - 1).coerceAtLeast(0)][(c - 1).coerceAtLeast(0)]
+            val upRight = matrix[(r - 1).coerceAtLeast(0)][(c + 1).coerceAtMost(maxCol)]
+            val downLeft = matrix[(r + 1).coerceAtMost(maxRow)][(c - 1).coerceAtLeast(0)]
+            val downRight = matrix[(r + 1).coerceAtMost(maxRow)][(c + 1).coerceAtMost(maxCol)]
+            return isSymbol(right) ||
+                isSymbol(left) ||
+                isSymbol(down) ||
+                isSymbol(up) ||
+                isSymbol(upLeft) ||
+                isSymbol(upRight) ||
+                isSymbol(downLeft) ||
+                isSymbol(downRight)
+        }
 
         fun readMatrix(input: String): Array<Array<Char>> {
             val splitInput = input.split("\n").filter { it.isNotEmpty() }.map { it.trim() }
