@@ -31,7 +31,15 @@ class GearRation {
                 // check below
                 isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][c]) ||
                 // check above
-                isSymbol(matrix[(r - 1).coerceAtLeast(0)][c])
+                isSymbol(matrix[(r - 1).coerceAtLeast(0)][c]) ||
+                // check above left
+                isSymbol(matrix[(r - 1).coerceAtLeast(0)][(c - 1).coerceAtLeast(0)]) ||
+                // check above right
+                isSymbol(matrix[(r - 1).coerceAtLeast(0)][(c + 1).coerceAtMost(maxCol)]) ||
+                // check below left
+                isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][(c - 1).coerceAtLeast(0)]) ||
+                // check below right
+                isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][(c + 1).coerceAtMost(maxCol)])
 
         fun readMatrix(input: String): Array<Array<Char>> {
             val splitInput = input.split("\n").filter { it.isNotEmpty() }.map { it.trim() }
@@ -52,6 +60,6 @@ class GearRation {
             return matrix
         }
 
-        private fun isSymbol(char: Char): Boolean = "£$%&*/=#@".contains(char)
+        private fun isSymbol(char: Char): Boolean = "$%&*/=#@".contains(char)
     }
 }
