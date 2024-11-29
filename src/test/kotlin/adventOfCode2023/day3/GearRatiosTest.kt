@@ -220,4 +220,16 @@ class GearRatiosTest {
 
         assertEquals(9, ratio)
     }
+
+    @Test
+    fun `calculate start gear ratio right and down left`() {
+        val input = "..." +
+                ".*5" +
+                "2.."
+        val matrix = readMatrix(input)
+
+        val ratio = calculateGearRatio(matrix)
+
+        assertEquals(10, ratio)
+    }
 }
