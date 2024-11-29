@@ -175,10 +175,21 @@ class GearRatiosTest {
             this::class.java.getResource("/adventOfCode2023/day3/basic.txt")?.readText() ?: fail()
         val matrix = readMatrix(input)
         val gears = isAdjacentToSymbol(matrix)
-        gears.forEach{ println(it) }
 
         val sum = gears.sum()
 
         assertEquals(4361, sum)
+    }
+
+    @Test
+    fun `sum gears full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2023/day3/full.txt")?.readText() ?: fail()
+        val matrix = readMatrix(input)
+        val gears = isAdjacentToSymbol(matrix)
+
+        val sum = gears.sum()
+
+        assertEquals(512794, sum)
     }
 }
