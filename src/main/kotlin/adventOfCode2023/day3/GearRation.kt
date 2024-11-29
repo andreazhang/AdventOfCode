@@ -9,7 +9,7 @@ class GearRation {
 
             matrix.forEachIndexed { r, row ->
                 row.forEachIndexed { c, col ->
-                    if (matrix[r][c].isDigit() && isSurroundedBySymbol(matrix, r, c, maxCol)) {
+                    if (matrix[r][c].isDigit() && isSurroundedBySymbol(matrix, r, c, maxRow, maxCol)) {
                         gears.add(matrix[r][c].digitToInt())
                     }
                 }
@@ -22,10 +22,16 @@ class GearRation {
             matrix: Array<Array<Char>>,
             r: Int,
             c: Int,
+            maxRow: Int,
             maxCol: Int,
-        ) = isSymbol(matrix[r][(c + 1).coerceAtMost(maxCol)]) ||
-            // check on right
-            isSymbol(matrix[r][(c - 1).coerceAtLeast(0)]) // check on left
+        ) = // check on right
+            isSymbol(matrix[r][(c + 1).coerceAtMost(maxCol)]) ||
+                // check on left
+                isSymbol(matrix[r][(c - 1).coerceAtLeast(0)]) ||
+                // check below
+                isSymbol(matrix[(r + 1).coerceAtMost(maxRow)][c]) ||
+                // check above
+                isSymbol(matrix[(r - 1).coerceAtLeast(0)][c])
 
         fun readMatrix(input: String): Array<Array<Char>> {
             val splitInput = input.split("\n").filter { it.isNotEmpty() }.map { it.trim() }
@@ -46,6 +52,6 @@ class GearRation {
             return matrix
         }
 
-        fun isSymbol(char: Char): Boolean = "£$%&*/=".contains(char)
+        private fun isSymbol(char: Char): Boolean = "£$%&*/=#@".contains(char)
     }
 }

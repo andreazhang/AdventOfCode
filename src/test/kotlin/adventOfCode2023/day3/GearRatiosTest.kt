@@ -77,6 +77,26 @@ class GearRatiosTest {
     }
 
     @Test
+    fun `a number is a gear if it's above a symbol`() {
+        val input = ".4\n.#"
+        val matrix = readMatrix(input)
+
+        val gears = isAdjacentToSymbol(matrix)
+
+        assertEquals(listOf(4), gears)
+    }
+
+    @Test
+    fun `a number is a gear if it's below a symbol`() {
+        val input = ".@\n.5"
+        val matrix = readMatrix(input)
+
+        val gears = isAdjacentToSymbol(matrix)
+
+        assertEquals(listOf(5), gears)
+    }
+
+    @Test
     fun `a number is not a gear if it's not adjacent to a symbol`() {
         val input = "1."
         val matrix = readMatrix(input)
