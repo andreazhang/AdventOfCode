@@ -1,9 +1,8 @@
 package adventOfCode2023.day1
 
-import org.example.adventOfCode2023.Day1.Trebuchet.Companion.calibrateAdvancedValue
-import org.example.adventOfCode2023.Day1.Trebuchet.Companion.calibrateValue
+import adventOfCode2023.day1.Trebuchet.Companion.calibrateAdvancedValue
+import adventOfCode2023.day1.Trebuchet.Companion.calibrateValue
 import org.junit.jupiter.api.Test
-
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
@@ -38,14 +37,16 @@ class TrebuchetTest {
 
         val sum = calibrateValue(input)
 
-        assertEquals(55208, sum)
+        assertEquals(55_208, sum)
     }
 
     @Test
     fun `get calibration value from advanced file with one line`() {
         val input =
-            TrebuchetTest::class.java.getResource("/adventOfCode2023/day1/oneline_with_letter.txt")?.readText()
-                ?: fail("No file found")
+            TrebuchetTest::class
+                .java
+                .getResource("/adventOfCode2023/day1/oneline_with_letter.txt")
+                ?.readText() ?: fail("No file found")
 
         val sum = calibrateAdvancedValue(input)
 
@@ -55,8 +56,10 @@ class TrebuchetTest {
     @Test
     fun `get calibration value from advanced file with a few line`() {
         val input =
-            TrebuchetTest::class.java.getResource("/adventOfCode2023/day1/basic_with_letter.txt")?.readText()
-                ?: fail("No file found")
+            TrebuchetTest::class
+                .java
+                .getResource("/adventOfCode2023/day1/basic_with_letter.txt")
+                ?.readText() ?: fail("No file found")
 
         val sum = calibrateAdvancedValue(input)
 
@@ -71,6 +74,6 @@ class TrebuchetTest {
 
         val sum = calibrateAdvancedValue(input)
 
-        assertEquals(54578, sum)
+        assertEquals(54_578, sum)
     }
 }

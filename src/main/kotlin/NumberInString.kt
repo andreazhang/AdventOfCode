@@ -38,31 +38,43 @@ class NumberInString {
             while (i < text.length) {
                 try {
                     when {
-                        text[i] == 'o' && text[i+1] == 'n' && text[i+2] == 'e' -> {
+                        text[i] == 'o' && text[i + 1] == 'n' && text[i + 2] == 'e' -> {
                             newText += "1" + text[i]
                         }
-                        text[i] == 't' && text[i+1] == 'w' && text[i+2] == 'o' -> {
+                        text[i] == 't' && text[i + 1] == 'w' && text[i + 2] == 'o' -> {
                             newText += "2" + text[i]
                         }
-                        text[i] == 't' && text[i+1] == 'h' && text[i+2] == 'r' && text[i+3] == 'e' && text[i+4] == 'e' -> {
+                        text[i] == 't' &&
+                            text[i + 1] == 'h' &&
+                            text[i + 2] == 'r' &&
+                            text[i + 3] == 'e' &&
+                            text[i + 4] == 'e' -> {
                             newText += "3" + text[i]
                         }
-                        text[i] == 'f' && text[i+1] == 'o' && text[i+2] == 'u' && text[i+3] == 'r' -> {
+                        text[i] == 'f' && text[i + 1] == 'o' && text[i + 2] == 'u' && text[i + 3] == 'r' -> {
                             newText += "4" + text[i]
                         }
-                        text[i] == 'f' && text[i+1] == 'i' && text[i+2] == 'v' && text[i+3] == 'e' -> {
+                        text[i] == 'f' && text[i + 1] == 'i' && text[i + 2] == 'v' && text[i + 3] == 'e' -> {
                             newText += "5" + text[i]
                         }
-                        text[i] == 's' && text[i+1] == 'i' && text[i+2] == 'x' -> {
+                        text[i] == 's' && text[i + 1] == 'i' && text[i + 2] == 'x' -> {
                             newText += "6" + text[i]
                         }
-                        text[i] == 's' && text[i+1] == 'e' && text[i+2] == 'v' && text[i+3] == 'e' && text[i+4] == 'n' -> {
+                        text[i] == 's' &&
+                            text[i + 1] == 'e' &&
+                            text[i + 2] == 'v' &&
+                            text[i + 3] == 'e' &&
+                            text[i + 4] == 'n' -> {
                             newText += "7" + text[i]
                         }
-                        text[i] == 'e' && text[i+1] == 'i' && text[i+2] == 'g' && text[i+3] == 'h' && text[i+4] == 't' -> {
+                        text[i] == 'e' &&
+                            text[i + 1] == 'i' &&
+                            text[i + 2] == 'g' &&
+                            text[i + 3] == 'h' &&
+                            text[i + 4] == 't' -> {
                             newText += "8" + text[i]
                         }
-                        text[i] == 'n' && text[i+1] == 'i' && text[i+2] == 'n' && text[i+3] == 'e' -> {
+                        text[i] == 'n' && text[i + 1] == 'i' && text[i + 2] == 'n' && text[i + 3] == 'e' -> {
                             newText += "9" + text[i]
                         }
                         else -> {
@@ -74,7 +86,6 @@ class NumberInString {
                     newText += text[i]
                     i++
                 }
-
             }
             println(newText)
             newText
