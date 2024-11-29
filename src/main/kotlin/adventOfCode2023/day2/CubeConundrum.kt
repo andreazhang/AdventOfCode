@@ -6,7 +6,7 @@ class CubeConundrum {
         private const val MAX_RED_CUBES = 12
         private const val MAX_GREEN_CUBES = 13
 
-        fun parseGame(input: String): Game {
+        fun calculateGameWithMaxSeenOfEachCube(input: String): Game {
             val gameId = input.split(" ")[1].removeSuffix(":").toInt()
             var blueCube = 0
             var redCube = 0
@@ -24,16 +24,17 @@ class CubeConundrum {
         }
 
         fun parseGames(input: String): List<Game> {
-            return input.split("\n").filter { it.isNotEmpty() }.map { parseGame(it) }.toList()
+            return input.split("\n").filter { it.isNotEmpty() }.map { calculateGameWithMaxSeenOfEachCube(it) }.toList()
         }
 
         fun calculateTotal(games: List<Game>): Int {
-            games.forEach{println(it)}
-            games.filter { it.blueCube <= MAX_BLUE_CUBES && it.redCube <= MAX_RED_CUBES && it.greenCube <= MAX_GREEN_CUBES }.forEach{println(it)}
-
             return games
                 .filter { it.blueCube <= MAX_BLUE_CUBES && it.redCube <= MAX_RED_CUBES && it.greenCube <= MAX_GREEN_CUBES }
                 .sumOf { it.id }
+        }
+
+        fun calculateSumOfPower(games: List<Game>): Int {
+            return games.sumOf { it.blueCube * it.redCube * it.greenCube }
         }
     }
 }

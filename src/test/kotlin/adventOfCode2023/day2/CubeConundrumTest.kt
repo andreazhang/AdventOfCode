@@ -1,7 +1,8 @@
 package adventOfCode2023.day2
 
 import org.example.adventOfCode2023.day2.CubeConundrum.Companion.calculateTotal
-import org.example.adventOfCode2023.day2.CubeConundrum.Companion.parseGame
+import org.example.adventOfCode2023.day2.CubeConundrum.Companion.calculateGameWithMaxSeenOfEachCube
+import org.example.adventOfCode2023.day2.CubeConundrum.Companion.calculateSumOfPower
 import org.example.adventOfCode2023.day2.CubeConundrum.Companion.parseGames
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.assertAll
@@ -14,7 +15,7 @@ class CubeConundrumTest {
     fun `calculate max number of each colour seen each game turn`() {
         val input = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"
 
-        val game = parseGame(input)
+        val game = calculateGameWithMaxSeenOfEachCube(input)
 
         assertAll("game has correct properties",
             { assertEquals(1, game.id) },
@@ -56,5 +57,15 @@ class CubeConundrumTest {
         val total = calculateTotal(games)
 
         assertEquals(2268, total)
+    }
+
+    @Test
+    fun `calculate sum of the power of each game set`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day2/basic.txt")?.readText() ?: fail()
+        val games = parseGames(input)
+
+        val total = calculateSumOfPower(games)
+
+        assertEquals(2286, total)
     }
 }
