@@ -23,6 +23,9 @@ class Scratchcards {
 
     data class Game (val id: Int, val winningNumbers: List<Int>, val scratchedNumbers: List<Int>) {
         fun myWinningNumbers(): Set<Int> = winningNumbers.intersect(scratchedNumbers.toSet())
+        fun points(): Int {
+            return 0
+        }
     }
 
 }

@@ -29,6 +29,16 @@ class ScratchcardsTest {
     }
 
     @Test
+    fun `get game points, 0 points if no winning numbers`() {
+        val input = "Card 1: 1 2 3 | 4 5 6"
+        val game = Scratchcards.parseGame(input)
+
+        val points = game.points()
+
+        assertEquals(0, points)
+    }
+
+    @Test
     fun `parse game from file`() {
         val input = this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail()
 
