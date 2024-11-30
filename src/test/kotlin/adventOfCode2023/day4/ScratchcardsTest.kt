@@ -110,12 +110,22 @@ class ScratchcardsTest {
     }
 
     @Test
-    fun `more scratchcard recursion hell, 0 scratchcard with 0 winning numbers`() {
-        val game1 = Scratchcards.parseGame("Card 1: 1 2 3 | 4 5 6")
+    fun `more scratchcard recursion hell, 3 scratchcard with 1 winning numbers`() {
+        val game1 = Scratchcards.parseGame("Card 1: 1 2 3 | 1")
         val game2 = Scratchcards.parseGame("Card 1: 1 2 3 | 4 5 6")
 
         val scratchcards = Scratchcards.getNumberOfRecursiveScratchcards(listOf(game1, game2))
 
-        assertEquals(0, scratchcards)
+        assertEquals(3, scratchcards)
+    }
+
+    @Test
+    fun `more scratchcard recursion hell, 4 scratchcard with 2 winning numbers`() {
+        val game1 = Scratchcards.parseGame("Card 1: 1 2 3 | 1 2")
+        val game2 = Scratchcards.parseGame("Card 1: 1 2 3 | 4 5 6")
+
+        val scratchcards = Scratchcards.getNumberOfRecursiveScratchcards(listOf(game1, game2))
+
+        assertEquals(3, scratchcards)
     }
 }
