@@ -49,6 +49,16 @@ class ScratchcardsTest {
     }
 
     @Test
+    fun `get game points, 2 points if 2 winning number`() {
+        val input = "Card 1: 1 2 3 | 1 3 5 6"
+        val game = Scratchcards.parseGame(input)
+
+        val points = game.points()
+
+        assertEquals(2, points)
+    }
+
+    @Test
     fun `parse game from file`() {
         val input = this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail()
 

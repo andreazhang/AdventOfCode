@@ -27,7 +27,7 @@ class Scratchcards {
             if (myWinningNumbers().isEmpty()) {
                 return 0
             }
-            return 1
+            return myWinningNumbers().size
         }
     }
 
