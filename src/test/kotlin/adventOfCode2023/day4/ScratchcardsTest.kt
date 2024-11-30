@@ -1,6 +1,8 @@
 package adventOfCode2023.day4
 
-import org.example.adventOfCode2023.day4.Scratchcards
+import org.example.adventOfCode2023.day4.Scratchcards.Companion.getNumberOfRecursiveScratchcards
+import org.example.adventOfCode2023.day4.Scratchcards.Companion.parseGame
+import org.example.adventOfCode2023.day4.Scratchcards.Companion.parseGames
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.fail
@@ -11,7 +13,7 @@ class ScratchcardsTest {
     fun `get game from string`() {
         val input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
 
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         assertEquals(1, game.id)
         assertEquals(listOf(41, 48, 83, 86, 17), game.winningNumbers)
@@ -21,7 +23,7 @@ class ScratchcardsTest {
     @Test
     fun `compare scratched numbers against winning numbers`() {
         val input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         val myWinningNumbers = game.myWinningNumbers()
 
@@ -31,7 +33,7 @@ class ScratchcardsTest {
     @Test
     fun `get game points, 0 points if no winning numbers`() {
         val input = "Card 1: 1 2 3 | 4 5 6"
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         val points = game.points()
 
@@ -41,7 +43,7 @@ class ScratchcardsTest {
     @Test
     fun `get game points, 1 points if 1 winning number`() {
         val input = "Card 1: 1 2 3 | 1 4 5 6"
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         val points = game.points()
 
@@ -51,7 +53,7 @@ class ScratchcardsTest {
     @Test
     fun `get game points, 2 points if 2 winning number`() {
         val input = "Card 1: 1 2 3 | 1 3 5 6"
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         val points = game.points()
 
@@ -61,7 +63,7 @@ class ScratchcardsTest {
     @Test
     fun `get game points, 4 points if 3 winning number`() {
         val input = "Card 1: 1 2 3 | 1 2 3"
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         val points = game.points()
 
@@ -71,7 +73,7 @@ class ScratchcardsTest {
     @Test
     fun `get game points, 8 points if 4 winning number`() {
         val input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
-        val game = Scratchcards.parseGame(input)
+        val game = parseGame(input)
 
         val points = game.points()
 
@@ -82,7 +84,7 @@ class ScratchcardsTest {
     fun `parse game from file`() {
         val input = this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail()
 
-        val games = Scratchcards.parseGames(input)
+        val games = parseGames(input)
 
         assertEquals(1, games[0].id)
         assertEquals(listOf(13, 32, 20, 16, 61), games[1].winningNumbers)
@@ -92,7 +94,7 @@ class ScratchcardsTest {
     @Test
     fun `score points basic`() {
         val input = this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail()
-        val games = Scratchcards.parseGames(input)
+        val games = parseGames(input)
 
         val points = games.sumOf { it.points() }
 
@@ -102,7 +104,7 @@ class ScratchcardsTest {
     @Test
     fun `score points full`() {
         val input = this::class.java.getResource("/adventOfCode2023/day4/full.txt")?.readText() ?: fail()
-        val games = Scratchcards.parseGames(input)
+        val games = parseGames(input)
 
         val points = games.sumOf { it.points() }
 
@@ -111,20 +113,36 @@ class ScratchcardsTest {
 
     @Test
     fun `more scratchcard recursion hell, 3 scratchcard with 1 winning numbers`() {
-        val game1 = Scratchcards.parseGame("Card 1: 1 2 3 | 1")
-        val game2 = Scratchcards.parseGame("Card 1: 1 2 3 | 4 5 6")
+        val games = listOf(
+            parseGame("Card 1: 1 2 3 | 1 2"),
+            parseGame("Card 1: 1 2 3 | 4 5 6")
+        )
 
-        val scratchcards = Scratchcards.getNumberOfRecursiveScratchcards(listOf(game1, game2))
+        val scratchcards = getNumberOfRecursiveScratchcards(games)
 
         assertEquals(3, scratchcards)
     }
 
     @Test
     fun `more scratchcard recursion hell, 4 scratchcard with 2 winning numbers`() {
-        val game1 = Scratchcards.parseGame("Card 1: 1 2 3 | 1 2")
-        val game2 = Scratchcards.parseGame("Card 1: 1 2 3 | 4 5 6")
+        val games = listOf(
+            parseGame("Card 1: 1 2 3 | 1 2"),
+            parseGame("Card 1: 1 2 3 | 4 5 6")
+        )
 
-        val scratchcards = Scratchcards.getNumberOfRecursiveScratchcards(listOf(game1, game2))
+        val scratchcards = getNumberOfRecursiveScratchcards(games)
+
+        assertEquals(3, scratchcards)
+    }
+
+    @Test
+    fun `more scratchcard recursion hell, 5 scratchcard with 2 winning numbers`() {
+        val games = listOf(
+            parseGame("Card 1: 1 2 3 | 1 2"),
+            parseGame("Card 1: 1 2 3 | 4 5 6")
+        )
+
+        val scratchcards = getNumberOfRecursiveScratchcards(games)
 
         assertEquals(3, scratchcards)
     }
