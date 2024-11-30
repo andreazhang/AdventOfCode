@@ -198,7 +198,7 @@ class GearRatiosTest {
 
         val ratio = calculateGearRatio(matrix)
 
-        assertEquals(9, ratio)
+        assertEquals(0, ratio)
     }
 
     @Test
@@ -223,13 +223,23 @@ class GearRatiosTest {
 
     @Test
     fun `calculate start gear ratio right and down left`() {
-        val input = "..." +
-                ".*5" +
+        val input = "...\n" +
+                ".*5\n" +
                 "2.."
         val matrix = readMatrix(input)
 
         val ratio = calculateGearRatio(matrix)
 
         assertEquals(10, ratio)
+    }
+
+    @Test
+    fun `calculate start gear ratio basic`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day3/basic.txt")?.readText() ?: fail()
+        val matrix = readMatrix(input)
+
+        val ratio = calculateGearRatio(matrix)
+
+        assertEquals(467835, ratio)
     }
 }
