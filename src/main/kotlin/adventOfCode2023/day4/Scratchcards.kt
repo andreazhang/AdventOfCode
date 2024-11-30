@@ -1,5 +1,7 @@
 package org.example.adventOfCode2023.day4
 
+import kotlin.math.pow
+
 class Scratchcards {
     companion object {
         fun parseGame(input: String): Game {
@@ -27,7 +29,7 @@ class Scratchcards {
             if (myWinningNumbers().isEmpty()) {
                 return 0
             }
-            return myWinningNumbers().size
+            return 2.0.pow((myWinningNumbers().size - 1).toDouble()).toInt()
         }
     }
 
