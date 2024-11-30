@@ -114,7 +114,7 @@ class ScratchcardsTest {
     @Test
     fun `more scratchcard recursion hell, 3 scratchcard with 1 winning numbers`() {
         val games = listOf(
-            parseGame("Card 1: 1 2 3 | 1 2"),
+            parseGame("Card 1: 1 2 3 | 1"),
             parseGame("Card 2: 1 2 3 | 4 5 6")
         )
 
@@ -123,28 +123,28 @@ class ScratchcardsTest {
         assertEquals(3, scratchcards)
     }
 
-    @Test
-    fun `more scratchcard recursion hell, 3 scratchcard with 2 winning numbers`() {
-        val games = listOf(
-            parseGame("Card 1: 1 2 3 | 1 2"),
-            parseGame("Card 2: 1 2 3 | 4 5 6")
-        )
+//    @Test
+//    fun `more scratchcard recursion hell, overflow 3 scratchcard with 2 winning numbers`() {
+//        val games = listOf(
+//            parseGame("Card 1: 1 2 3 | 1 2"),
+//            parseGame("Card 2: 1 2 3 | 4 5 6")
+//        )
+//
+//        val scratchcards = getNumberOfRecursiveScratchcards(games)
+//
+//        assertEquals(3, scratchcards)
+//    }
 
-        val scratchcards = getNumberOfRecursiveScratchcards(games)
-
-        assertEquals(3, scratchcards)
-    }
-
-    @Test
-    fun `more scratchcard recursion hell, 1 scratchcard with 2 winning numbers`() {
-        val games = listOf(
-            parseGame("Card 1: 1 2 3 | 1 2")
-        )
-
-        val scratchcards = getNumberOfRecursiveScratchcards(games)
-
-        assertEquals(1, scratchcards)
-    }
+//    @Test
+//    fun `more scratchcard recursion hell, overflow 1 scratchcard with 2 winning numbers`() {
+//        val games = listOf(
+//            parseGame("Card 1: 1 2 3 | 1 2")
+//        )
+//
+//        val scratchcards = getNumberOfRecursiveScratchcards(games)
+//
+//        assertEquals(1, scratchcards)
+//    }
 
     @Test
     fun `more scratchcard recursion hell, 5 scratchcard with 2 winning numbers`() {

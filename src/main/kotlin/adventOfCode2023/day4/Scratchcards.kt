@@ -21,8 +21,31 @@ class Scratchcards {
         fun parseGames(input: String): List<Game> =
             input.split("\n").map { parseGame(it) }.toList()
 
-        fun getNumberOfRecursiveScratchcards(games: List<Game>): Int {
+        fun getNumberOfRecursiveScratchcards(games: List<Game>): Int = getNumberOfRecursiveScratchcards(games, games)
 
+        fun getNumberOfRecursiveScratchcards(games: List<Game>, gamesToCheck: List<Game>): Int {
+            if (gamesToCheck.isEmpty()) {
+                return 0
+            }
+            var scorecards = 0
+
+            println("------------------------")
+            println("check #${gamesToCheck[0].id} - S${gamesToCheck.map { it.id }} - W${gamesToCheck[0].myWinningNumbers().size}")
+
+            gamesToCheck.forEach { game ->
+                scorecards++
+                println(" checking ${game.id} - $scorecards")
+
+                if (game.myWinningNumbers().isNotEmpty()) {
+                    val newGamesToCheck = games.subList(game.id, game.id + game.myWinningNumbers().size)
+                    println("  new recursion = ${newGamesToCheck.map { it.id }}")
+                    scorecards += getNumberOfRecursiveScratchcards(games, newGamesToCheck)
+                    println("     -> score = $scorecards")
+                }
+            }
+            println("done ----")
+
+            return scorecards
         }
 
     }
