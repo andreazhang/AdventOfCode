@@ -19,6 +19,16 @@ class ScratchcardsTest {
     }
 
     @Test
+    fun `compare scratched numbers against winning numbers`() {
+        val input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
+        val game = Scratchcards.parseGame(input)
+
+        val myWinningNumbers = game.myWinningNumbers()
+
+        assertEquals(setOf(48, 83, 17, 86), myWinningNumbers)
+    }
+
+    @Test
     fun `parse game from file`() {
         val input = this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail()
 
