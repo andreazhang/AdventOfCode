@@ -1,4 +1,4 @@
-package org.example
+package org.example.adventOfCode2023
 
 class NumberInString {
     companion object {

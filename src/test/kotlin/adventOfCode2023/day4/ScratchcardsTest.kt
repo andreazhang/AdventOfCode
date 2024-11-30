@@ -115,7 +115,7 @@ class ScratchcardsTest {
     fun `more scratchcard recursion hell, 3 scratchcard with 1 winning numbers`() {
         val games = listOf(
             parseGame("Card 1: 1 2 3 | 1 2"),
-            parseGame("Card 1: 1 2 3 | 4 5 6")
+            parseGame("Card 2: 1 2 3 | 4 5 6")
         )
 
         val scratchcards = getNumberOfRecursiveScratchcards(games)
@@ -124,10 +124,10 @@ class ScratchcardsTest {
     }
 
     @Test
-    fun `more scratchcard recursion hell, 4 scratchcard with 2 winning numbers`() {
+    fun `more scratchcard recursion hell, 3 scratchcard with 2 winning numbers`() {
         val games = listOf(
             parseGame("Card 1: 1 2 3 | 1 2"),
-            parseGame("Card 1: 1 2 3 | 4 5 6")
+            parseGame("Card 2: 1 2 3 | 4 5 6")
         )
 
         val scratchcards = getNumberOfRecursiveScratchcards(games)
@@ -150,12 +150,34 @@ class ScratchcardsTest {
     fun `more scratchcard recursion hell, 5 scratchcard with 2 winning numbers`() {
         val games = listOf(
             parseGame("Card 1: 1 2 3 | 1 2"),
-            parseGame("Card 1: 1 2 3 | 4 5 6"),
-            parseGame("Card 1: 1 2 3 | 4 5 6"),
+            parseGame("Card 2: 1 2 3 | 4 5 6"),
+            parseGame("Card 3: 1 2 3 | 4 5 6"),
         )
 
         val scratchcards = getNumberOfRecursiveScratchcards(games)
 
         assertEquals(5, scratchcards)
+    }
+
+    @Test
+    fun `more scratchcard recursion hell, 5 scratchcard with 2 winning numbers in 2 games`() {
+        val games = listOf(
+            parseGame("Card 1: 1 2 3 | 1"),
+            parseGame("Card 2: 1 2 3 | 1"),
+            parseGame("Card 3: 1 2 3 | 4 5 6"),
+        )
+
+        val scratchcards = getNumberOfRecursiveScratchcards(games)
+
+        assertEquals(6, scratchcards)
+    }
+
+    @Test
+    fun `more scratchcard recursion hell, basic`() {
+        val games = parseGames(this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail())
+
+        val scratchcards = getNumberOfRecursiveScratchcards(games)
+
+        assertEquals(30, scratchcards)
     }
 }

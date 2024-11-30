@@ -1,8 +1,10 @@
-import org.example.NumberInString.Companion.findFirstNumberInText
-import org.example.NumberInString.Companion.findLastNumberInText
-import org.example.NumberInString.Companion.funAddDigitBeforeNumber
-import org.example.NumberInString.Companion.funGetFirstAndLastDigit
-import org.example.NumberInString.Companion.funSumFirstAndLastDigit
+package adventOfCode2023
+
+import org.example.adventOfCode2023.NumberInString.Companion.findFirstNumberInText
+import org.example.adventOfCode2023.NumberInString.Companion.findLastNumberInText
+import org.example.adventOfCode2023.NumberInString.Companion.funAddDigitBeforeNumber
+import org.example.adventOfCode2023.NumberInString.Companion.funGetFirstAndLastDigit
+import org.example.adventOfCode2023.NumberInString.Companion.funSumFirstAndLastDigit
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
