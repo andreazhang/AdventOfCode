@@ -29,21 +29,21 @@ class Scratchcards {
             }
             var scorecards = 0
 
-            println("------------------------")
-            println("check #${gamesToCheck[0].id} - S${gamesToCheck.map { it.id }} - W${gamesToCheck[0].myWinningNumbers().size}")
+//            println("------------------------")
+//            println("check #${gamesToCheck[0].id} - S${gamesToCheck.map { it.id }} - W${gamesToCheck[0].myWinningNumbers().size}")
 
             gamesToCheck.forEach { game ->
                 scorecards++
-                println(" checking ${game.id} - $scorecards")
+//                println(" checking ${game.id} - $scorecards")
 
                 if (game.myWinningNumbers().isNotEmpty()) {
                     val newGamesToCheck = games.subList(game.id, game.id + game.myWinningNumbers().size)
-                    println("  new recursion = ${newGamesToCheck.map { it.id }}")
+//                    println("  new recursion = ${newGamesToCheck.map { it.id }}")
                     scorecards += getNumberOfRecursiveScratchcards(games, newGamesToCheck)
-                    println("     -> score = $scorecards")
+//                    println("     -> score = $scorecards")
                 }
             }
-            println("done ----")
+//            println("done ----")
 
             return scorecards
         }

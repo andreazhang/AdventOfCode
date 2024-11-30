@@ -180,4 +180,13 @@ class ScratchcardsTest {
 
         assertEquals(30, scratchcards)
     }
+
+    @Test
+    fun `more scratchcard recursion hell, full`() {
+        val games = parseGames(this::class.java.getResource("/adventOfCode2023/day4/full.txt")?.readText() ?: fail())
+
+        val scratchcards = getNumberOfRecursiveScratchcards(games)
+
+        assertEquals(30, scratchcards)
+    }
 }
