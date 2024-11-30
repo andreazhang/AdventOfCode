@@ -5,7 +5,7 @@ import kotlin.math.pow
 class Scratchcards {
     companion object {
         fun parseGame(input: String): Game {
-            val gameId = input.split(" ")[1].removeSuffix(":")
+            val gameId = input.split(" ").filter { it.isNotEmpty() }[1].removeSuffix(":")
             val winningNumbers = input.substring(input.indexOf(":")+1, input.indexOf("|"))
             val scratchedNumbers = input.substring(input.indexOf("|")+1, input.length)
 

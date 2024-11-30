@@ -98,4 +98,14 @@ class ScratchcardsTest {
 
         assertEquals(13, points)
     }
+
+    @Test
+    fun `score points full`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day4/full.txt")?.readText() ?: fail()
+        val games = Scratchcards.parseGames(input)
+
+        val points = games.sumOf { it.points() }
+
+        assertEquals(24733, points)
+    }
 }
