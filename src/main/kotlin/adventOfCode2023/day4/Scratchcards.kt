@@ -15,6 +15,10 @@ class Scratchcards {
 
         private fun convertToListOfNumbers(numbers: String) =
             numbers.split(" ").map { it.trim() }.filter { it.isNotEmpty() }.map { it.toInt() }.toList()
+
+        fun parseGames(input: String): List<Game> =
+            input.split("\n").map { parseGame(it) }.toList()
+
     }
 
     data class Game (val id: Int, val winningNumbers: List<Int>, val scratchedNumbers: List<Int>)
