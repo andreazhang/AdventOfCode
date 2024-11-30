@@ -22,13 +22,17 @@ class Scratchcards {
             input.split("\n").map { parseGame(it) }.toList()
 
         fun getNumberOfRecursiveScratchcards(games: List<Game>): Int {
+            if (games.isEmpty()) {
+                return 1
+            }
             println("start recursion ${games.size} ${games[0].myWinningNumbers()}")
             if (games[0].myWinningNumbers().isEmpty()) {
                 return 1
             }
 
             val maxWinScratchcardWithinAvailable = (games[0].myWinningNumbers().size + 1).coerceAtMost(games.size)
-            return games.size + getNumberOfRecursiveScratchcards(games.subList(1, maxWinScratchcardWithinAvailable))
+            val nextAvailableScratchcards = games.subList(1, maxWinScratchcardWithinAvailable)
+            return games.size + nextAvailableScratchcards.sumOf { getNumberOfRecursiveScratchcards(listOf(it)) }
         }
 
     }
