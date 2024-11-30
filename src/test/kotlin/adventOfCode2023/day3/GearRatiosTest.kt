@@ -242,4 +242,14 @@ class GearRatiosTest {
 
         assertEquals(467835, ratio)
     }
+
+    @Test
+    fun `calculate start gear ratio full`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day3/full.txt")?.readText() ?: fail()
+        val matrix = readMatrix(input)
+
+        val ratio = calculateGearRatio(matrix)
+
+        assertEquals(67779080, ratio)
+    }
 }
