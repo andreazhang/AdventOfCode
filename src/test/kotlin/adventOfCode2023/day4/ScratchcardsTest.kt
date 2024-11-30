@@ -88,4 +88,14 @@ class ScratchcardsTest {
         assertEquals(listOf(13, 32, 20, 16, 61), games[1].winningNumbers)
         assertEquals(listOf(69, 82, 63, 72, 16, 21, 14,  1), games[2].scratchedNumbers)
     }
+
+    @Test
+    fun `score points basic`() {
+        val input = this::class.java.getResource("/adventOfCode2023/day4/basic.txt")?.readText() ?: fail()
+        val games = Scratchcards.parseGames(input)
+
+        val points = games.sumOf { it.points() }
+
+        assertEquals(13, points)
+    }
 }
