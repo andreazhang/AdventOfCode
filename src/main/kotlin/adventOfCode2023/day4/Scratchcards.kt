@@ -21,6 +21,10 @@ class Scratchcards {
         fun parseGames(input: String): List<Game> =
             input.split("\n").map { parseGame(it) }.toList()
 
+        fun getNumberOfRecursiveScratchcards(games: List<Game>): Int {
+            return 0
+        }
+
     }
 
     data class Game (val id: Int, val winningNumbers: List<Int>, val scratchedNumbers: List<Int>) {
