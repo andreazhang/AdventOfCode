@@ -50,4 +50,15 @@ class HistorianHysteriaTest {
 
         assertEquals(1223326, total)
     }
+
+    @Test
+    fun `calculate occurrences of left locations on right locations`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day1/basic.txt")?.readText() ?: fail()
+        val locations = HistorianHysteria.parseInput(input)
+
+        val occurrences = HistorianHysteria.calculateOccurrences(locations)
+
+        assertEquals(mapOf(Pair(3, 3), Pair(4, 1)), occurrences)
+    }
 }

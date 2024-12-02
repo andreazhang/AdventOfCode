@@ -19,6 +19,12 @@ class HistorianHysteria {
 
             return sortedLeft.mapIndexed { index, left -> abs(left - sortedRight[index]) }.toList()
         }
+
+        fun calculateOccurrences(locations: Locations): Map<Int, Int> {
+            val uniqueLeft = locations.left.toSet()
+
+            return uniqueLeft.associateWith { left -> locations.right.count { it == left } }.filter { it.value > 0 }
+        }
     }
 
     class Locations(val left: List<Int>, val right: List<Int>)
