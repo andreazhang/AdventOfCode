@@ -26,4 +26,16 @@ class HistorianHysteriaTest {
 
         assertEquals(listOf(2, 1, 0, 1, 2, 5), differences)
     }
+
+    @Test
+    fun `calculate total distance for basic scenario`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day1/basic.txt")?.readText() ?: fail()
+        val locations = HistorianHysteria.parseInput(input)
+        val differences = HistorianHysteria.calculateDifferenceBetweenLeftAndRight(locations)
+
+        val total = differences.sum()
+
+        assertEquals(11, total)
+    }
 }
