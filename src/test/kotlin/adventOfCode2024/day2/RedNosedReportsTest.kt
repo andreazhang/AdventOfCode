@@ -21,7 +21,7 @@ class RedNosedReportsTest {
 
     @Test
     fun `check report is valid if all numbers are increasing`() {
-        val input = arrayOf(1, 2, 3)
+        val input = arrayOf(1, 2, 5)
 
         val valid = RedNosedReports.validateReport(input)
 
@@ -48,7 +48,7 @@ class RedNosedReportsTest {
 
     @Test
     fun `check report is valid if all numbers are decreasing`() {
-        val input = arrayOf(3, 2, 1)
+        val input = arrayOf(8, 7, 4)
 
         val valid = RedNosedReports.validateReport(input)
 
@@ -58,6 +58,24 @@ class RedNosedReportsTest {
     @Test
     fun `check report is invalid if some numbers are not decreasing and some are`() {
         val input = arrayOf(3, 2, 2)
+
+        val valid = RedNosedReports.validateReport(input)
+
+        assertFalse(valid)
+    }
+
+    @Test
+    fun `check report is invalid if some numbers are increasing by more than 3`() {
+        val input = arrayOf(1, 2, 6)
+
+        val valid = RedNosedReports.validateReport(input)
+
+        assertFalse(valid)
+    }
+
+    @Test
+    fun `check report is invalid if some numbers are decreasing by more than 3`() {
+        val input = arrayOf(9, 8, 4)
 
         val valid = RedNosedReports.validateReport(input)
 
