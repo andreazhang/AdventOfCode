@@ -1,5 +1,7 @@
 package adventOfCode2024.day1
 
+import kotlin.math.abs
+
 class HistorianHysteria {
     companion object {
         fun parseInput(input: String): Locations {
@@ -9,6 +11,13 @@ class HistorianHysteria {
             val rightLocations = linesSplitToNumberArray.map { it[1].toInt() }.toList()
 
             return Locations(leftLocations, rightLocations)
+        }
+
+        fun calculateDifferenceBetweenLeftAndRight(locations: Locations): List<Int> {
+            val sortedLeft = locations.left.sorted()
+            val sortedRight = locations.right.sorted()
+
+            return sortedLeft.mapIndexed { index, left -> abs(left - sortedRight[index]) }.toList()
         }
     }
 
