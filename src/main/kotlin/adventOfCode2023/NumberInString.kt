@@ -1,4 +1,4 @@
-package org.example.adventOfCode2023
+package adventOfCode2023
 
 class NumberInString {
     companion object {
@@ -25,14 +25,11 @@ class NumberInString {
         }
 
         val funGetFirstAndLastDigit: (text: String) -> Int = { text: String ->
-            println(text)
             val i = findFirstNumberInText(text) * 10 + findLastNumberInText(text)
-            println(i)
             i
         }
 
         val funAddDigitBeforeNumber: (text: String) -> String = { text: String ->
-            println(text)
             var newText = ""
             var i = 0
             while (i < text.length) {

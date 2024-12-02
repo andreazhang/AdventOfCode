@@ -14,9 +14,8 @@ class RedNosedReports {
                 .toTypedArray()
         }
 
-        fun validateReport(input: Array<Int>): Boolean {
-            return allNumbersAreIncreasingBetweenBoundaries(input) || allNumbersAreDecreasingBetweenBoundaries(input)
-        }
+        fun validateReport(input: Array<Int>): Boolean = allNumbersAreIncreasingBetweenBoundaries(input) ||
+            allNumbersAreDecreasingBetweenBoundaries(input)
 
         private fun allNumbersAreIncreasingBetweenBoundaries(input: Array<Int>): Boolean {
             for (i in 0..input.size - 2) {
@@ -25,7 +24,6 @@ class RedNosedReports {
                     return false
                 }
             }
-
             return true
         }
 
@@ -36,13 +34,10 @@ class RedNosedReports {
                     return false
                 }
             }
-
             return true
         }
 
-        fun validateReports(reports: Array<Array<Int>>): List<Boolean> {
-            return reports.map { validateReport(it) }.toList()
-        }
+        fun validateReports(reports: Array<Array<Int>>): List<Boolean> = reports.map { validateReport(it) }.toList()
 
         fun validateReportWithDampener(input: Array<Int>): Boolean {
             if (validateReport(input)) {
@@ -59,8 +54,6 @@ class RedNosedReports {
             return false
         }
 
-        fun validateReportsDampener(reports: Array<Array<Int>>): List<Boolean> {
-            return reports.map { validateReportWithDampener(it) }.toList()
-        }
+        fun validateReportsDampener(reports: Array<Array<Int>>): List<Boolean> = reports.map { validateReportWithDampener(it) }.toList()
     }
 }
