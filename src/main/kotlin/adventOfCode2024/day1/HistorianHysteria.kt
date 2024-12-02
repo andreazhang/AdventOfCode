@@ -7,8 +7,5 @@ class HistorianHysteria {
         }
     }
 
-    class Locations(val left: List<Int>, val right: List<Int>) {
-
-    }
-
+    class Locations(val left: List<Int>, val right: List<Int>)
 }

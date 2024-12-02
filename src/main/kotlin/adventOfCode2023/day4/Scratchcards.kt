@@ -6,20 +6,19 @@ class Scratchcards {
     companion object {
         fun parseGame(input: String): Game {
             val gameId = input.split(" ").filter { it.isNotEmpty() }[1].removeSuffix(":")
-            val winningNumbers = input.substring(input.indexOf(":")+1, input.indexOf("|"))
-            val scratchedNumbers = input.substring(input.indexOf("|")+1, input.length)
+            val winningNumbers = input.substring(input.indexOf(":") + 1, input.indexOf("|"))
+            val scratchedNumbers = input.substring(input.indexOf("|") + 1, input.length)
 
-            return Game(gameId.toInt(),
+            return Game(
+                gameId.toInt(),
                 convertToListOfNumbers(winningNumbers),
-                convertToListOfNumbers(scratchedNumbers)
+                convertToListOfNumbers(scratchedNumbers),
             )
         }
 
-        private fun convertToListOfNumbers(numbers: String) =
-            numbers.split(" ").map { it.trim() }.filter { it.isNotEmpty() }.map { it.toInt() }.toList()
+        private fun convertToListOfNumbers(numbers: String) = numbers.split(" ").map { it.trim() }.filter { it.isNotEmpty() }.map { it.toInt() }.toList()
 
-        fun parseGames(input: String): List<Game> =
-            input.split("\n").map { parseGame(it) }.toList()
+        fun parseGames(input: String): List<Game> = input.split("\n").map { parseGame(it) }.toList()
 
         fun getNumberOfRecursiveScratchcards(games: List<Game>): Int = getNumberOfRecursiveScratchcards(games, games)
 
@@ -29,29 +28,30 @@ class Scratchcards {
             }
             var scorecards = 0
 
-//            println("------------------------")
-//            println("check #${gamesToCheck[0].id} - S${gamesToCheck.map { it.id }} - W${gamesToCheck[0].myWinningNumbers().size}")
+            //            println("------------------------")
+            //            println("check #${gamesToCheck[0].id} - S${gamesToCheck.map { it.id }} -
+            // W${gamesToCheck[0].myWinningNumbers().size}")
 
             gamesToCheck.forEach { game ->
                 scorecards++
-//                println(" checking ${game.id} - $scorecards")
+                //                println(" checking ${game.id} - $scorecards")
 
                 if (game.myWinningNumbers().isNotEmpty()) {
                     val newGamesToCheck = games.subList(game.id, game.id + game.myWinningNumbers().size)
-//                    println("  new recursion = ${newGamesToCheck.map { it.id }}")
+                    //                    println("  new recursion = ${newGamesToCheck.map { it.id }}")
                     scorecards += getNumberOfRecursiveScratchcards(games, newGamesToCheck)
-//                    println("     -> score = $scorecards")
+                    //                    println("     -> score = $scorecards")
                 }
             }
-//            println("done ----")
+            //            println("done ----")
 
             return scorecards
         }
-
     }
 
-    data class Game (val id: Int, val winningNumbers: List<Int>, val scratchedNumbers: List<Int>) {
+    data class Game(val id: Int, val winningNumbers: List<Int>, val scratchedNumbers: List<Int>) {
         fun myWinningNumbers(): Set<Int> = winningNumbers.intersect(scratchedNumbers.toSet())
+
         fun points(): Int {
             if (myWinningNumbers().isEmpty()) {
                 return 0
@@ -59,5 +59,4 @@ class Scratchcards {
             return 2.0.pow((myWinningNumbers().size - 1).toDouble()).toInt()
         }
     }
-
 }

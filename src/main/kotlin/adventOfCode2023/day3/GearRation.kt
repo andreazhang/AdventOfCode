@@ -56,10 +56,11 @@ class GearRation {
                     }
                     if (!isDigit || c == maxCol) {
                         if (isGear) {
-                            gearNextToStar[starCoordinate] = gearNextToStar.getOrDefault(starCoordinate, mutableListOf()).plus(number)
+                            gearNextToStar[starCoordinate] =
+                                gearNextToStar.getOrDefault(starCoordinate, mutableListOf()).plus(number)
                             isGear = false
                         }
-//                        println("$number $isGear $starCoordinate $gearNextToStar")
+                        //                        println("$number $isGear $starCoordinate $gearNextToStar")
                         starCoordinate = Pair(0, 0)
                         number = 0
                     }
@@ -116,13 +117,13 @@ class GearRation {
             val downLeft = matrix[(r + 1).coerceAtMost(maxRow)][(c - 1).coerceAtLeast(0)]
             val downRight = matrix[(r + 1).coerceAtMost(maxRow)][(c + 1).coerceAtMost(maxCol)]
             return isSymbol(right) ||
-                    isSymbol(left) ||
-                    isSymbol(down) ||
-                    isSymbol(up) ||
-                    isSymbol(upLeft) ||
-                    isSymbol(upRight) ||
-                    isSymbol(downLeft) ||
-                    isSymbol(downRight)
+                isSymbol(left) ||
+                isSymbol(down) ||
+                isSymbol(up) ||
+                isSymbol(upLeft) ||
+                isSymbol(upRight) ||
+                isSymbol(downLeft) ||
+                isSymbol(downRight)
         }
 
         fun readMatrix(input: String): Array<Array<Char>> {
