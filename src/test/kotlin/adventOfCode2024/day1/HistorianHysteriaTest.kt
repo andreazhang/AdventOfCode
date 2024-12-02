@@ -52,7 +52,7 @@ class HistorianHysteriaTest {
     }
 
     @Test
-    fun `calculate occurrences of left locations on right locations`() {
+    fun `calculate occurrences of left locations on right locations with occurrences greater than 0`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day1/basic.txt")?.readText() ?: fail()
         val locations = HistorianHysteria.parseInput(input)
@@ -60,5 +60,17 @@ class HistorianHysteriaTest {
         val occurrences = HistorianHysteria.calculateOccurrences(locations)
 
         assertEquals(mapOf(Pair(3, 3), Pair(4, 1)), occurrences)
+    }
+
+    @Test
+    fun `calculate total occurrences`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day1/basic.txt")?.readText() ?: fail()
+        val locations = HistorianHysteria.parseInput(input)
+        val occurrences = HistorianHysteria.calculateOccurrences(locations)
+
+        val total = HistorianHysteria.calculateOccurrencesTotal(locations.left, occurrences)
+
+        assertEquals(31, total)
     }
 }
