@@ -10,5 +10,9 @@ class RedNosedReports {
                 }
                 .toTypedArray()
         }
+
+        fun validateReport(input: Array<Int>): Boolean {
+            return true
+        }
     }
 }
