@@ -48,7 +48,7 @@ class HistorianHysteriaTest {
 
         val total = differences.sum()
 
-        assertEquals(1223326, total)
+        assertEquals(1_223_326, total)
     }
 
     @Test
@@ -83,6 +83,6 @@ class HistorianHysteriaTest {
 
         val total = HistorianHysteria.calculateOccurrencesTotal(locations.left, occurrences)
 
-        assertEquals(21070419, total)
+        assertEquals(21_070_419, total)
     }
 }
