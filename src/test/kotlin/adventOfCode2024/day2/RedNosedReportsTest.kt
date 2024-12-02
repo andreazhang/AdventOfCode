@@ -130,4 +130,15 @@ class RedNosedReportsTest {
 
         assertFalse(valid)
     }
+
+    @Test
+    fun `Problem Dampener - validate full reports`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day2/full.txt")?.readText() ?: fail()
+        val reports = RedNosedReports.parse(input)
+
+        val validReportCount = RedNosedReports.validateReportsDampener(reports).count { it }
+
+        assertEquals(526, validReportCount)
+    }
 }

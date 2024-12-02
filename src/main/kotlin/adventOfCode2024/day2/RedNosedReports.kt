@@ -58,5 +58,9 @@ class RedNosedReports {
 
             return false
         }
+
+        fun validateReportsDampener(reports: Array<Array<Int>>): List<Boolean> {
+            return reports.map { validateReportWithDampener(it) }.toList()
+        }
     }
 }
