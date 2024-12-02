@@ -50,7 +50,8 @@ class RedNosedReports {
             }
 
             input.forEachIndexed { index, _ ->
-                if (validateReport(input.drop(index).toTypedArray())) {
+                val tmp = input.clone()
+                if (validateReport(tmp.filterIndexed { tmpIndex, _ -> tmpIndex != index }.toTypedArray())) {
                     return true
                 }
             }

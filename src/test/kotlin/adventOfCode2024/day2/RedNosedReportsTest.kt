@@ -112,4 +112,22 @@ class RedNosedReportsTest {
 
         assertTrue(valid)
     }
+
+    @Test
+    fun `Problem Dampener - report is valid if removing a level makes it safe 2`() {
+        val input = arrayOf(8, 6, 4, 4, 1)
+
+        val valid = RedNosedReports.validateReportWithDampener(input)
+
+        assertTrue(valid)
+    }
+
+    @Test
+    fun `Problem Dampener - report is invalid if removing a level does not make it safe`() {
+        val input = arrayOf(1, 2, 7, 8, 9)
+
+        val valid = RedNosedReports.validateReportWithDampener(input)
+
+        assertFalse(valid)
+    }
 }
