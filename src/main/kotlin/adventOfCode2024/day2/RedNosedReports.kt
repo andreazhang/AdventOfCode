@@ -43,5 +43,19 @@ class RedNosedReports {
         fun validateReports(reports: Array<Array<Int>>): List<Boolean> {
             return reports.map { validateReport(it) }.toList()
         }
+
+        fun validateReportWithDampener(input: Array<Int>): Boolean {
+            if (validateReport(input)) {
+                return true
+            }
+
+            input.forEachIndexed { index, _ ->
+                if (validateReport(input.drop(index).toTypedArray())) {
+                    return true
+                }
+            }
+
+            return false
+        }
     }
 }
