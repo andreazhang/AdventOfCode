@@ -81,4 +81,26 @@ class RedNosedReportsTest {
 
         assertFalse(valid)
     }
+
+    @Test
+    fun `validate basic reports`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day2/basic.txt")?.readText() ?: fail()
+        val reports = RedNosedReports.parse(input)
+
+        val validReportCount = RedNosedReports.validateReports(reports).count { it }
+
+        assertEquals(2, validReportCount)
+    }
+
+    @Test
+    fun `validate full reports`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day2/full.txt")?.readText() ?: fail()
+        val reports = RedNosedReports.parse(input)
+
+        val validReportCount = RedNosedReports.validateReports(reports).count { it }
+
+        assertEquals(526, validReportCount)
+    }
 }

@@ -39,5 +39,9 @@ class RedNosedReports {
 
             return true
         }
+
+        fun validateReports(reports: Array<Array<Int>>): List<Boolean> {
+            return reports.map { validateReport(it) }.toList()
+        }
     }
 }
