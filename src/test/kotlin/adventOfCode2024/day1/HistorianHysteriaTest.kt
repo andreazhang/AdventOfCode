@@ -63,7 +63,7 @@ class HistorianHysteriaTest {
     }
 
     @Test
-    fun `calculate total occurrences`() {
+    fun `calculate total occurrences basic`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day1/basic.txt")?.readText() ?: fail()
         val locations = HistorianHysteria.parseInput(input)
@@ -72,5 +72,17 @@ class HistorianHysteriaTest {
         val total = HistorianHysteria.calculateOccurrencesTotal(locations.left, occurrences)
 
         assertEquals(31, total)
+    }
+
+    @Test
+    fun `calculate total occurrences full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day1/full.txt")?.readText() ?: fail()
+        val locations = HistorianHysteria.parseInput(input)
+        val occurrences = HistorianHysteria.calculateOccurrences(locations)
+
+        val total = HistorianHysteria.calculateOccurrencesTotal(locations.left, occurrences)
+
+        assertEquals(21070419, total)
     }
 }
