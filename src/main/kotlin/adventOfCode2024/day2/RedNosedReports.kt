@@ -12,7 +12,14 @@ class RedNosedReports {
         }
 
         fun validateReport(input: Array<Int>): Boolean {
-            return true
+            var valid = true
+            for (i in 0..input.size - 2) {
+                if (input[i] - input[i+1] >= 0) {
+                    valid = false
+                }
+            }
+
+            return valid
         }
     }
 }

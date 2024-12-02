@@ -2,6 +2,7 @@ package adventOfCode2024.day2
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import kotlin.test.fail
 
@@ -25,5 +26,41 @@ class RedNosedReportsTest {
         val valid = RedNosedReports.validateReport(input)
 
         assertTrue(valid)
+    }
+
+    @Test
+    fun `check report is invalid if some numbers are not increasing`() {
+        val input = arrayOf(1, 2, 2)
+
+        val valid = RedNosedReports.validateReport(input)
+
+        assertFalse(valid)
+    }
+
+    @Test
+    fun `check report is invalid if some numbers increasing and some decreasing`() {
+        val input = arrayOf(1, 2, 3, 2, 1)
+
+        val valid = RedNosedReports.validateReport(input)
+
+        assertFalse(valid)
+    }
+
+    @Test
+    fun `check report is valid if all numbers are decreasing`() {
+        val input = arrayOf(3, 2, 1)
+
+        val valid = RedNosedReports.validateReport(input)
+
+        assertTrue(valid)
+    }
+
+    @Test
+    fun `check report is invalid if some numbers are not decreasing and some are`() {
+        val input = arrayOf(3, 2, 2)
+
+        val valid = RedNosedReports.validateReport(input)
+
+        assertFalse(valid)
     }
 }
