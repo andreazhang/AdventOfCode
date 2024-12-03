@@ -61,4 +61,22 @@ class MullItOverTest {
 
         assertEquals(183788984, total)
     }
+
+    @Test
+    fun `get indexes of all don't() operations`() {
+        val input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+
+        val result = MullItOver.findAllDontOperations(input)
+
+        assertEquals(20, result.keys.first())
+    }
+
+    @Test
+    fun `get indexes of all do() operations`() {
+        val input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+
+        val result = MullItOver.findAllDoOperations(input)
+
+        assertEquals(59, result.keys.first())
+    }
 }

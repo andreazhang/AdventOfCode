@@ -15,5 +15,15 @@ class MullItOver {
                 .map { it.map { num -> num.toInt() } }
                 .sumOf { it[0] * it[1] }
         }
+
+        fun findAllDontOperations(input: String): Map<Int, String> {
+            val dontPattern = """don't\(\)""".toRegex()
+            return dontPattern.findAll(input).map { Pair(it.range.first, it.value) }.toMap()
+        }
+
+        fun findAllDoOperations(input: String): Map<Int, String> {
+            val doPattern = """do\(\)""".toRegex()
+            return doPattern.findAll(input).map { Pair(it.range.first, it.value) }.toMap()
+        }
     }
 }
