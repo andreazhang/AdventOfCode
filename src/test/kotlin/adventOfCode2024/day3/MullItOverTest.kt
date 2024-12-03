@@ -79,4 +79,45 @@ class MullItOverTest {
 
         assertEquals(59, result.keys.first())
     }
+
+    @Test
+    fun `filter all do operations`() {
+        val input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+        val dontOperations = MullItOver.findAllDontOperations(input)
+        val doOperations = MullItOver.findAllDoOperations(input)
+        val mulOperations = MullItOver.findAllMulOperations(input)
+
+        val onlyDoOperations = MullItOver.filterOnlyDoOperations(mulOperations.plus(dontOperations).plus(doOperations).toSortedMap())
+
+        assertAll(
+            { assertEquals("mul(2,4)", onlyDoOperations[0]) },
+            { assertEquals("mul(8,5)", onlyDoOperations[1]) }
+        )
+    }
+
+    @Test
+    fun `calculate total for only do operations basic`() {
+        val input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+        val dontOperations = MullItOver.findAllDontOperations(input)
+        val doOperations = MullItOver.findAllDoOperations(input)
+        val mulOperations = MullItOver.findAllMulOperations(input)
+        val onlyDoOperations = MullItOver.filterOnlyDoOperations(mulOperations.plus(dontOperations).plus(doOperations).toSortedMap())
+
+        val total = MullItOver.calculateTotal(onlyDoOperations)
+
+        assertEquals(48, total)
+    }
+
+    @Test
+    fun `calculate total for only do operations full`() {
+        val input = this::class.java.getResource("/adventOfCode2024/day3/full.txt")?.readText() ?: fail()
+        val dontOperations = MullItOver.findAllDontOperations(input)
+        val doOperations = MullItOver.findAllDoOperations(input)
+        val mulOperations = MullItOver.findAllMulOperations(input)
+        val onlyDoOperations = MullItOver.filterOnlyDoOperations(mulOperations.plus(dontOperations).plus(doOperations).toSortedMap())
+
+        val total = MullItOver.calculateTotal(onlyDoOperations)
+
+        assertEquals(62098619, total)
+    }
 }

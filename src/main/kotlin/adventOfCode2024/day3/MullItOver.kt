@@ -25,5 +25,20 @@ class MullItOver {
             val doPattern = """do\(\)""".toRegex()
             return doPattern.findAll(input).map { Pair(it.range.first, it.value) }.toMap()
         }
+
+        fun filterOnlyDoOperations(operations: Map<Int, String>): List<String> {
+            var add = true
+
+            val onlyDoOperations = mutableListOf<String>()
+            operations.forEach { (_, operation) ->
+                when (operation) {
+                    "don't()" -> add = false
+                    "do()" -> add = true
+                    else -> if (add) {onlyDoOperations.add(operation)}
+                }
+            }
+
+            return onlyDoOperations
+        }
     }
 }
