@@ -38,7 +38,7 @@ class MullItOverTest {
     }
 
     @Test
-    fun `calculate total by adding the multiplication of each mul operation`() {
+    fun `calculate total by adding the multiplication of each mul operation basic`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day3/basic.txt")?.readText() ?: fail()
         val mulOperations = MullItOver.findAllMulOperations(input)
@@ -46,5 +46,16 @@ class MullItOverTest {
         val total = MullItOver.calculateTotal(mulOperations)
 
         assertEquals(161, total)
+    }
+
+    @Test
+    fun `calculate total by adding the multiplication of each mul operation full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day3/full.txt")?.readText() ?: fail()
+        val mulOperations = MullItOver.findAllMulOperations(input)
+
+        val total = MullItOver.calculateTotal(mulOperations)
+
+        assertEquals(183788984, total)
     }
 }
