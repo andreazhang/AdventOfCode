@@ -1,8 +1,8 @@
 package adventOfCode2024.day
 
-class TestClass {
+class MullItOver {
     companion object {
-        fun test(input: Any): Int {
+        fun parse(input: Any): Int {
             TODO("Not yet implemented")
         }
     }
