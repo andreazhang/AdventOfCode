@@ -1,6 +1,7 @@
 package adventOfCode2024.day3
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertAll
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
@@ -12,10 +13,12 @@ class MullItOverTest {
 
         val result = MullItOver.findAllMulOperations(input)
 
-        assertEquals("mul(2,4)", result[0])
-        assertEquals("mul(5,5)", result[1])
-        assertEquals("mul(11,8)", result[2])
-        assertEquals("mul(8,5)", result[3])
+        assertAll(
+            { assertEquals("mul(2,4)", result[1]) },
+            { assertEquals("mul(5,5)", result[29]) },
+            { assertEquals("mul(11,8)", result[53]) },
+            { assertEquals("mul(8,5)", result[62]) }
+        )
     }
 
     @Test
@@ -24,7 +27,7 @@ class MullItOverTest {
 
         val result = MullItOver.findAllMulOperations(input)
 
-        assertEquals("mul(2,4)", result[0])
+        assertEquals("mul(2,4)", result[1])
     }
 
     @Test
@@ -33,8 +36,8 @@ class MullItOverTest {
 
         val result = MullItOver.findAllMulOperations(input)
 
-        assertEquals("mul(2,4)", result[0])
-        assertEquals("mul(5,5)", result[1])
+        assertEquals("mul(2,4)", result[1])
+        assertEquals("mul(5,5)", result[29])
     }
 
     @Test
@@ -43,7 +46,7 @@ class MullItOverTest {
             this::class.java.getResource("/adventOfCode2024/day3/basic.txt")?.readText() ?: fail()
         val mulOperations = MullItOver.findAllMulOperations(input)
 
-        val total = MullItOver.calculateTotal(mulOperations)
+        val total = MullItOver.calculateTotal(mulOperations.values.toList())
 
         assertEquals(161, total)
     }
@@ -54,7 +57,7 @@ class MullItOverTest {
             this::class.java.getResource("/adventOfCode2024/day3/full.txt")?.readText() ?: fail()
         val mulOperations = MullItOver.findAllMulOperations(input)
 
-        val total = MullItOver.calculateTotal(mulOperations)
+        val total = MullItOver.calculateTotal(mulOperations.values.toList())
 
         assertEquals(183788984, total)
     }

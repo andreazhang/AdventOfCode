@@ -4,8 +4,8 @@ class MullItOver {
     companion object {
         private val pattern = """mul\(\d{1,3},\d{1,3}\)""".toRegex()
 
-        fun findAllMulOperations(input: String): List<String> {
-            return pattern.findAll(input).map { it.value }.toList()
+        fun findAllMulOperations(input: String): Map<Int, String> {
+            return pattern.findAll(input).map { Pair(it.range.first, it.value) }.toMap()
         }
 
         fun calculateTotal(mulOperations: List<String>): Int {
