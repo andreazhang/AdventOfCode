@@ -1,9 +1,11 @@
-package adventOfCode2024.day
+package adventOfCode2024.day3
 
 class MullItOver {
     companion object {
-        fun parse(input: Any): Int {
-            TODO("Not yet implemented")
+        private val pattern = """mul\(\d{1,3},\d{1,3}\)""".toRegex()
+
+        fun findAllMulOperations(input: String): List<String> {
+            return pattern.findAll(input).map { it.value }.toList()
         }
     }
 }
