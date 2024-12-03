@@ -6,7 +6,7 @@ import kotlin.test.fail
 
 class MullItOverTest {
     @Test
-    fun `parse input`() {
+    fun `parse input basic`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day3/basic.txt")?.readText() ?: fail()
 
@@ -35,5 +35,16 @@ class MullItOverTest {
 
         assertEquals("mul(2,4)", result[0])
         assertEquals("mul(5,5)", result[1])
+    }
+
+    @Test
+    fun `calculate total by adding the multiplication of each mul operation`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day3/basic.txt")?.readText() ?: fail()
+        val mulOperations = MullItOver.findAllMulOperations(input)
+
+        val total = MullItOver.calculateTotal(mulOperations)
+
+        assertEquals(161, total)
     }
 }
