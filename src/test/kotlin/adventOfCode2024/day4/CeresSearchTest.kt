@@ -6,12 +6,12 @@ import kotlin.test.fail
 
 class CeresSearchTest {
     @Test
-    fun `test`() {
+    fun `parse input as matrix`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day4/basic.txt")?.readText() ?: fail()
 
-        val result = CeresSearch.test(input)
+        val matrix = CeresSearch.parseInput(input)
 
-        assertEquals(0, result)
+        assertEquals("M", matrix[0][0])
     }
 }
