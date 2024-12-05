@@ -20,20 +20,20 @@ class PrintQueueTest {
 
     @Test
     fun `update is valid if page in rule is before all other pages under that rule`() {
-        val rule = mapOf(47 to listOf(53, 13, 61, 29))
+        val rules = mapOf(61 to listOf(29), 47 to listOf(53, 13, 61, 29))
         val update = listOf(75, 47, 61, 53, 29)
 
-        val valid = PrintQueue.validateRule(rule, update)
+        val valid = PrintQueue.validateRule(rules, update)
 
         assertTrue(valid)
     }
 
     @Test
     fun `update is not valid if page in is after any other page under that rule`() {
-        val rule = mapOf(47 to listOf(53, 13, 61, 29))
+        val rules = mapOf(61 to listOf(53), 47 to listOf(53, 13, 61, 29))
         val update = listOf(29, 75, 47, 61, 53)
 
-        val valid = PrintQueue.validateRule(rule, update)
+        val valid = PrintQueue.validateRule(rules, update)
 
         assertFalse(valid)
     }

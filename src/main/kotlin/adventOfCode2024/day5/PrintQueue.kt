@@ -19,10 +19,10 @@ class PrintQueue {
             return SafetyManual(rules, updates)
         }
 
-        fun validateRule(rule: Map<Int, List<Int>>, update: List<Int>): Boolean {
+        fun validateRule(rules: Map<Int, List<Int>>, update: List<Int>): Boolean {
             for ((index, page) in update.withIndex()) {
                 update.subList(0, index).forEach {
-                    if (rule[page]?.contains(it) == true) {
+                    if (rules[page]?.contains(it) == true) {
                         return false
                     }
                 }
