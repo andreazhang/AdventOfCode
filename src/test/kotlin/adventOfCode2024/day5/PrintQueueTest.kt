@@ -124,4 +124,17 @@ class PrintQueueTest {
 
         assertEquals(123, sum)
     }
+
+    @Test
+    fun `sum middle pages of all fixed incorrect updates full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day5/full.txt")?.readText() ?: fail()
+        val safetyManual = PrintQueue.parse(input)
+        val invalidUpdates = safetyManual.getAllInvalidUpdates()
+        val fixedUpdates = PrintQueue.fixIncorrectUpdates(safetyManual.rules, invalidUpdates)
+
+        val sum = PrintQueue.sumMiddlePages(fixedUpdates)
+
+        assertEquals(4719, sum)
+    }
 }
