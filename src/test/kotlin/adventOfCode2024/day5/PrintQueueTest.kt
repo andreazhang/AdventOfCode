@@ -47,6 +47,7 @@ class PrintQueueTest {
         val validUpdates = safetyManual.getAllValidUpdates()
 
         assertEquals(3, validUpdates.size)
+        assertEquals(listOf(75,47,61,53,29), validUpdates.first())
     }
 
     @Test
@@ -71,5 +72,17 @@ class PrintQueueTest {
         val sum = PrintQueue.sumMiddlePages(validUpdates)
 
         assertEquals(5964, sum)
+    }
+
+    @Test
+    fun `get all invalid updates from safety manual`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
+        val safetyManual = PrintQueue.parse(input)
+
+        val validUpdates = safetyManual.getAllInvalidUpdates()
+
+        assertEquals(3, validUpdates.size)
+        assertEquals(listOf(75,97,47,61,53), validUpdates.first())
     }
 }

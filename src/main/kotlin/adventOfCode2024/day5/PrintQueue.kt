@@ -43,5 +43,9 @@ class PrintQueue {
         fun getAllValidUpdates(): List<List<Int>> {
             return updates.filter { validateRule(rules, it) }
         }
+
+        fun getAllInvalidUpdates(): List<List<Int>> {
+            return updates.filter { !validateRule(rules, it) }
+        }
     }
 }
