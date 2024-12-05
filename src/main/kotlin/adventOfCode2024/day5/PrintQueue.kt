@@ -37,7 +37,7 @@ class PrintQueue {
         val updates: List<List<Int>>,
     ) {
         fun getAllValidUpdates(): List<List<Int>> {
-            TODO()
+            return updates.filter { validateRule(rules, it) }
         }
     }
 }
