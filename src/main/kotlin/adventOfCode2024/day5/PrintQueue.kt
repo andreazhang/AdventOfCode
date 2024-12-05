@@ -36,14 +36,7 @@ class PrintQueue {
         }
 
         fun fixIncorrectUpdate(rules: Map<Int, List<Int>>, incorrectUpdate: List<Int>): List<Int> {
-            //            47=[53, 13, 61, 29],
-            //            97=[13, 61, 47, 29, 53, 75],
-            //            75=[29, 53, 47, 61, 13],
-            //            61=[13, 53, 29],
-            //            29=[13],
-            //            53=[29, 13]
-            // from 75,97,47,61,53
-            var update = incorrectUpdate.toMutableList()
+            val update = incorrectUpdate.toMutableList()
             while (!validateUpdate(rules, update)) {
                 val pair = findNumbersToSwap(update, rules)
                 update.remove(pair.first)
