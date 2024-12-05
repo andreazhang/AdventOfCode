@@ -80,9 +80,21 @@ class PrintQueueTest {
             this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
         val safetyManual = PrintQueue.parse(input)
 
-        val validUpdates = safetyManual.getAllInvalidUpdates()
+        val invalidUpdates = safetyManual.getAllInvalidUpdates()
 
-        assertEquals(3, validUpdates.size)
-        assertEquals(listOf(75,97,47,61,53), validUpdates.first())
+        assertEquals(3, invalidUpdates.size)
+        assertEquals(listOf(75,97,47,61,53), invalidUpdates.first())
+    }
+
+    @Test
+    fun `fix incorrect update`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
+        val safetyManual = PrintQueue.parse(input)
+        val incorrectUpdate = listOf(75,97,47,61,53)
+
+        val fixedUpdate = PrintQueue.fixIncorrectUpdate(safetyManual.rules, incorrectUpdate)
+
+        assertEquals(listOf(97,75,47,61,53), fixedUpdate)
     }
 }

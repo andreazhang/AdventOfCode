@@ -34,6 +34,10 @@ class PrintQueue {
         fun sumMiddlePages(validUpdates: List<List<Int>>): Int {
             return validUpdates.sumOf { it[it.size / 2] }
         }
+
+        fun fixIncorrectUpdate(rules: Map<Int, List<Int>>, incorrectUpdate: List<Int>): List<Int> {
+            TODO("Not yet implemented")
+        }
     }
 
     class SafetyManual(
