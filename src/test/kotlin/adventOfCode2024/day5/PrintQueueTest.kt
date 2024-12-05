@@ -48,4 +48,16 @@ class PrintQueueTest {
 
         assertEquals(3, validUpdates.size)
     }
+
+    @Test
+    fun `sum middle pages of all valid rules`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
+        val safetyManual = PrintQueue.parse(input)
+        val validUpdates = safetyManual.getAllValidUpdates()
+
+        val sum = PrintQueue.sumMiddlePages(validUpdates)
+
+        assertEquals(143, sum)
+    }
 }

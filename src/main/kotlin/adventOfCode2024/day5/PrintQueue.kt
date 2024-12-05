@@ -30,6 +30,10 @@ class PrintQueue {
 
             return true
         }
+
+        fun sumMiddlePages(validUpdates: List<List<Int>>): Int {
+            return validUpdates.sumOf { it[it.size / 2] }
+        }
     }
 
     class SafetyManual(
