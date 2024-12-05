@@ -6,12 +6,13 @@ import kotlin.test.fail
 
 class PrintQueueTest {
     @Test
-    fun `test`() {
+    fun `parse input`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
 
-        val result = PrintQueue.test(input)
+        val safetyManual = PrintQueue.parse(input)
 
-        assertEquals(0, result)
+        assertEquals(listOf(53, 13, 61, 29), safetyManual.rules[47])
+        assertEquals(listOf(75, 47, 61, 53, 29), safetyManual.updates.first())
     }
 }

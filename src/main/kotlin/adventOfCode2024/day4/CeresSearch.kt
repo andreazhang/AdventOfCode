@@ -8,7 +8,11 @@ class CeresSearch {
                 .map { it.toCharArray().toTypedArray() }
                 .toTypedArray()
 
-        fun countWordInMatrix(matrix: Array<Array<Char>>, word: String, directions: List<Pair<Int, Int>>): Int {
+        fun countWordInMatrix(
+            matrix: Array<Array<Char>>,
+            word: String,
+            directions: List<Pair<Int, Int>>,
+        ): Int {
             var count = 0
             for (row in matrix.indices) {
                 for (col in 0..<matrix[0].size) {
@@ -27,7 +31,7 @@ class CeresSearch {
             row: Int,
             col: Int,
             direction: Pair<Int, Int>,
-            word: String
+            word: String,
         ): Boolean {
             var newRow = row
             var newCol = col
@@ -48,17 +52,20 @@ class CeresSearch {
             return true
         }
 
-        private fun outsideMatrixBoundary(newDimension: Int, matrix: Array<Array<Char>>) =
-            newDimension < 0 || newDimension >= matrix.size
+        private fun outsideMatrixBoundary(
+            newDimension: Int,
+            matrix: Array<Array<Char>>,
+        ) = newDimension < 0 || newDimension >= matrix.size
 
         fun countMasInXShapeInMatrix(matrix: Array<Array<Char>>): Int {
             var count = 0
 
-            for (row in 1..<matrix.size-1) {
-                for (col in 1..<matrix[0].size-1) {
+            for (row in 1..<matrix.size - 1) {
+                for (col in 1..<matrix[0].size - 1) {
                     if (matrix[row][col] == 'A') {
-                        if (setOf(matrix[row-1][col-1], matrix[row+1][col+1]).containsAll(listOf('M', 'S')) &&
-                            setOf(matrix[row+1][col-1], matrix[row-1][col+1]).containsAll(listOf('M', 'S'))) {
+                        if (setOf(matrix[row - 1][col - 1], matrix[row + 1][col + 1]).containsAll(listOf('M', 'S')) &&
+                            setOf(matrix[row + 1][col - 1], matrix[row - 1][col + 1]).containsAll(listOf('M', 'S'))
+                        ) {
                             count++
                         }
                     }
