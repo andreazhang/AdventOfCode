@@ -40,12 +40,15 @@ class CeresSearch {
                 newRow += direction.first
                 newCol += direction.second
 
-                if (newCol < 0 || newCol >= matrix.size || newRow < 0 || newRow >= matrix.size) {
+                if (outsideMatrixBoundary(newCol, matrix) || outsideMatrixBoundary(newRow, matrix)) {
                     return false
                 }
             }
 
             return true
         }
+
+        private fun outsideMatrixBoundary(newDimension: Int, matrix: Array<Array<Char>>) =
+            newDimension < 0 || newDimension >= matrix.size
     }
 }
