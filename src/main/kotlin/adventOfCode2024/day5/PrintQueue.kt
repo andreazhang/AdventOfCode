@@ -35,5 +35,9 @@ class PrintQueue {
     class SafetyManual(
         val rules: Map<Int, List<Int>>,
         val updates: List<List<Int>>,
-    )
+    ) {
+        fun getAllValidUpdates(): List<List<Int>> {
+            TODO()
+        }
+    }
 }

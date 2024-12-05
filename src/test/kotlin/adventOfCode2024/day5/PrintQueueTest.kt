@@ -37,4 +37,15 @@ class PrintQueueTest {
 
         assertFalse(valid)
     }
+
+    @Test
+    fun `get all valid updates from safety manual`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
+        val safetyManual = PrintQueue.parse(input)
+
+        val validUpdates = safetyManual.getAllValidUpdates()
+
+        assertEquals(3, validUpdates.size)
+    }
 }
