@@ -52,7 +52,20 @@ class CeresSearch {
             newDimension < 0 || newDimension >= matrix.size
 
         fun countMasInXShapeInMatrix(matrix: Array<Array<Char>>): Int {
-            TODO("Not yet implemented")
+            var count = 0
+
+            for (row in 1..<matrix.size-1) {
+                for (col in 1..<matrix[0].size-1) {
+                    if (matrix[row][col] == 'A') {
+                        if (setOf(matrix[row-1][col-1], matrix[row+1][col+1]).containsAll(listOf('M', 'S')) &&
+                            setOf(matrix[row+1][col-1], matrix[row-1][col+1]).containsAll(listOf('M', 'S'))) {
+                            count++
+                        }
+                    }
+                }
+            }
+
+            return count
         }
     }
 }
