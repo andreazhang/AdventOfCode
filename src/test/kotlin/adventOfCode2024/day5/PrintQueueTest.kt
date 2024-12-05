@@ -50,7 +50,7 @@ class PrintQueueTest {
     }
 
     @Test
-    fun `sum middle pages of all valid rules`() {
+    fun `sum middle pages of all valid rules basic`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
         val safetyManual = PrintQueue.parse(input)
@@ -59,5 +59,17 @@ class PrintQueueTest {
         val sum = PrintQueue.sumMiddlePages(validUpdates)
 
         assertEquals(143, sum)
+    }
+
+    @Test
+    fun `sum middle pages of all valid rules full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day5/full.txt")?.readText() ?: fail()
+        val safetyManual = PrintQueue.parse(input)
+        val validUpdates = safetyManual.getAllValidUpdates()
+
+        val sum = PrintQueue.sumMiddlePages(validUpdates)
+
+        assertEquals(5964, sum)
     }
 }
