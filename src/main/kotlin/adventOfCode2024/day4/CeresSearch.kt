@@ -2,15 +2,13 @@ package adventOfCode2024.day4
 
 class CeresSearch {
     companion object {
-        private val directions = listOf(Pair(0, 1), Pair(0, -1))
-
         fun parseInput(input: String): Array<Array<Char>> =
             input
                 .split("\r\n")
                 .map { it.toCharArray().toTypedArray() }
                 .toTypedArray()
 
-        fun countWordInMatrix(matrix: Array<Array<Char>>, word: String): Int {
+        fun countWordInMatrix(matrix: Array<Array<Char>>, word: String, directions: List<Pair<Int, Int>>): Int {
             var count = 0
             for (row in matrix.indices) {
                 for (col in 0..<matrix[0].size) {

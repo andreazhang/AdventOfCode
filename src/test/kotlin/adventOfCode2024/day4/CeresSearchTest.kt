@@ -22,8 +22,9 @@ class CeresSearchTest {
         val input =
             this::class.java.getResource("/adventOfCode2024/day4/basic.txt")?.readText() ?: fail()
         val matrix = CeresSearch.parseInput(input)
+        val directions = listOf(Pair(0, 1), Pair(0, -1))
 
-        val count = CeresSearch.countWordInMatrix(matrix, "XMAS")
+        val count = CeresSearch.countWordInMatrix(matrix, "XMAS", directions)
 
         assertEquals(5, count)
     }
