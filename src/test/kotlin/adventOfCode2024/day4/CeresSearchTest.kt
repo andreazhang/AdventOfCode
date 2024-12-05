@@ -108,4 +108,15 @@ class CeresSearchTest {
 
         assertEquals(9, count)
     }
+
+    @Test
+    fun `count X-MAS in input full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day4/full.txt")?.readText() ?: fail()
+        val matrix = CeresSearch.parseInput(input)
+
+        val count = CeresSearch.countMasInXShapeInMatrix(matrix)
+
+        assertEquals(1873, count)
+    }
 }
