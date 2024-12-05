@@ -50,5 +50,9 @@ class CeresSearch {
 
         private fun outsideMatrixBoundary(newDimension: Int, matrix: Array<Array<Char>>) =
             newDimension < 0 || newDimension >= matrix.size
+
+        fun countMasInXShapeInMatrix(matrix: Array<Array<Char>>): Int {
+            TODO("Not yet implemented")
+        }
     }
 }

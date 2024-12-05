@@ -87,4 +87,14 @@ class CeresSearchTest {
 
         assertEquals(18, count)
     }
+
+    @Test
+    fun `count X-MAS in input`() {
+        val input = "MMS\r\nSAM\r\nMXS"
+        val matrix = CeresSearch.parseInput(input)
+
+        val count = CeresSearch.countMasInXShapeInMatrix(matrix)
+
+        assertEquals(2, count)
+    }
 }
