@@ -68,6 +68,10 @@ class PrintQueue {
             }
             return Pair(0, 0)
         }
+
+        fun fixIncorrectUpdates(rules: Map<Int, List<Int>>, invalidUpdates: List<List<Int>>): List<List<Int>> {
+            return invalidUpdates.map { fixIncorrectUpdate(rules, it) }
+        }
     }
 
     class SafetyManual(
