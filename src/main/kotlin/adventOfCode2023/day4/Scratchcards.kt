@@ -16,13 +16,22 @@ class Scratchcards {
             )
         }
 
-        private fun convertToListOfNumbers(numbers: String) = numbers.split(" ").map { it.trim() }.filter { it.isNotEmpty() }.map { it.toInt() }.toList()
+        private fun convertToListOfNumbers(numbers: String) =
+            numbers
+                .split(" ")
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+                .map { it.toInt() }
+                .toList()
 
         fun parseGames(input: String): List<Game> = input.split("\n").map { parseGame(it) }.toList()
 
         fun getNumberOfRecursiveScratchcards(games: List<Game>): Int = getNumberOfRecursiveScratchcards(games, games)
 
-        fun getNumberOfRecursiveScratchcards(games: List<Game>, gamesToCheck: List<Game>): Int {
+        fun getNumberOfRecursiveScratchcards(
+            games: List<Game>,
+            gamesToCheck: List<Game>,
+        ): Int {
             if (gamesToCheck.isEmpty()) {
                 return 0
             }
@@ -49,7 +58,11 @@ class Scratchcards {
         }
     }
 
-    data class Game(val id: Int, val winningNumbers: List<Int>, val scratchedNumbers: List<Int>) {
+    data class Game(
+        val id: Int,
+        val winningNumbers: List<Int>,
+        val scratchedNumbers: List<Int>,
+    ) {
         fun myWinningNumbers(): Set<Int> = winningNumbers.intersect(scratchedNumbers.toSet())
 
         fun points(): Int {

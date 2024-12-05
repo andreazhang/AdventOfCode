@@ -7,6 +7,11 @@ class Trebuchet {
     companion object {
         fun calibrateValue(input: String): Int = input.split("\n").map(funGetFirstAndLastDigit).sum()
 
-        fun calibrateAdvancedValue(input: String): Int = input.split("\n").map(funAddDigitBeforeNumber).map(funGetFirstAndLastDigit).sum()
+        fun calibrateAdvancedValue(input: String): Int =
+            input
+                .split("\n")
+                .map(funAddDigitBeforeNumber)
+                .map(funGetFirstAndLastDigit)
+                .sum()
     }
 }

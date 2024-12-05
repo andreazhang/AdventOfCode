@@ -36,7 +36,8 @@ class GearRatiosTest {
 
         val matrix = readMatrix(input)
 
-        assertAll({ assertEquals('4', matrix[0][0]) },
+        assertAll(
+            { assertEquals('4', matrix[0][0]) },
             { assertEquals('*', matrix[4][3]) },
             { assertEquals('.', matrix[9][9]) },
         )

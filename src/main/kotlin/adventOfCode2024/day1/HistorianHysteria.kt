@@ -28,8 +28,14 @@ class HistorianHysteria {
                 .filter { it.value > 0 }
         }
 
-        fun calculateOccurrencesTotal(leftLocations: List<Int>, occurrences: Map<Int, Int>): Int = leftLocations.sumOf { it * (occurrences[it] ?: 0) }
+        fun calculateOccurrencesTotal(
+            leftLocations: List<Int>,
+            occurrences: Map<Int, Int>,
+        ): Int = leftLocations.sumOf { it * (occurrences[it] ?: 0) }
     }
 
-    class Locations(val left: List<Int>, val right: List<Int>)
+    class Locations(
+        val left: List<Int>,
+        val right: List<Int>,
+    )
 }

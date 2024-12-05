@@ -2,8 +2,11 @@ package adventOfCode2024.day4
 
 class CeresSearch {
     companion object {
-        fun parseInput(input: Any): Array<Array<String>> {
-            TODO("Not yet implemented")
-        }
+        fun parseInput(input: String): Array<Array<Char>> =
+            input
+                .split("\r\n")
+                .toTypedArray()
+                .map { it.toCharArray().toTypedArray() }
+                .toTypedArray()
     }
 }

@@ -9,13 +9,17 @@ class RedNosedReports {
             val lines = input.split("\r\n").filter { it.isNotEmpty() }.toTypedArray()
             return lines
                 .map { line ->
-                    line.split(" ").filter { it.isNotEmpty() }.map { it.toInt() }.toTypedArray()
-                }
-                .toTypedArray()
+                    line
+                        .split(" ")
+                        .filter { it.isNotEmpty() }
+                        .map { it.toInt() }
+                        .toTypedArray()
+                }.toTypedArray()
         }
 
-        fun validateReport(input: Array<Int>): Boolean = allNumbersAreIncreasingBetweenBoundaries(input) ||
-            allNumbersAreDecreasingBetweenBoundaries(input)
+        fun validateReport(input: Array<Int>): Boolean =
+            allNumbersAreIncreasingBetweenBoundaries(input) ||
+                allNumbersAreDecreasingBetweenBoundaries(input)
 
         private fun allNumbersAreIncreasingBetweenBoundaries(input: Array<Int>): Boolean {
             for (i in 0..input.size - 2) {

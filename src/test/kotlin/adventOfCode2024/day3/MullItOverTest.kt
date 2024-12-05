@@ -17,7 +17,7 @@ class MullItOverTest {
             { assertEquals("mul(2,4)", result[1]) },
             { assertEquals("mul(5,5)", result[29]) },
             { assertEquals("mul(11,8)", result[53]) },
-            { assertEquals("mul(8,5)", result[62]) }
+            { assertEquals("mul(8,5)", result[62]) },
         )
     }
 
@@ -59,7 +59,7 @@ class MullItOverTest {
 
         val total = MullItOver.calculateTotal(mulOperations.values.toList())
 
-        assertEquals(183788984, total)
+        assertEquals(183_788_984, total)
     }
 
     @Test
@@ -87,11 +87,14 @@ class MullItOverTest {
         val doOperations = MullItOver.findAllDoOperations(input)
         val mulOperations = MullItOver.findAllMulOperations(input)
 
-        val onlyDoOperations = MullItOver.filterOnlyDoOperations(mulOperations.plus(dontOperations).plus(doOperations).toSortedMap())
+        val onlyDoOperations =
+            MullItOver.filterOnlyDoOperations(
+                mulOperations.plus(dontOperations).plus(doOperations).toSortedMap(),
+            )
 
         assertAll(
             { assertEquals("mul(2,4)", onlyDoOperations[0]) },
-            { assertEquals("mul(8,5)", onlyDoOperations[1]) }
+            { assertEquals("mul(8,5)", onlyDoOperations[1]) },
         )
     }
 
@@ -101,7 +104,10 @@ class MullItOverTest {
         val dontOperations = MullItOver.findAllDontOperations(input)
         val doOperations = MullItOver.findAllDoOperations(input)
         val mulOperations = MullItOver.findAllMulOperations(input)
-        val onlyDoOperations = MullItOver.filterOnlyDoOperations(mulOperations.plus(dontOperations).plus(doOperations).toSortedMap())
+        val onlyDoOperations =
+            MullItOver.filterOnlyDoOperations(
+                mulOperations.plus(dontOperations).plus(doOperations).toSortedMap(),
+            )
 
         val total = MullItOver.calculateTotal(onlyDoOperations)
 
@@ -110,14 +116,18 @@ class MullItOverTest {
 
     @Test
     fun `calculate total for only do operations full`() {
-        val input = this::class.java.getResource("/adventOfCode2024/day3/full.txt")?.readText() ?: fail()
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day3/full.txt")?.readText() ?: fail()
         val dontOperations = MullItOver.findAllDontOperations(input)
         val doOperations = MullItOver.findAllDoOperations(input)
         val mulOperations = MullItOver.findAllMulOperations(input)
-        val onlyDoOperations = MullItOver.filterOnlyDoOperations(mulOperations.plus(dontOperations).plus(doOperations).toSortedMap())
+        val onlyDoOperations =
+            MullItOver.filterOnlyDoOperations(
+                mulOperations.plus(dontOperations).plus(doOperations).toSortedMap(),
+            )
 
         val total = MullItOver.calculateTotal(onlyDoOperations)
 
-        assertEquals(62098619, total)
+        assertEquals(62_098_619, total)
     }
 }

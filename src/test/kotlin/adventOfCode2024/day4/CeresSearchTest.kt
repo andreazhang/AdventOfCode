@@ -12,6 +12,6 @@ class CeresSearchTest {
 
         val matrix = CeresSearch.parseInput(input)
 
-        assertEquals("M", matrix[0][0])
+        assertEquals('M', matrix[0][0])
     }
 }

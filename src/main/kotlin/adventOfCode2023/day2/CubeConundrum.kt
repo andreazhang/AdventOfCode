@@ -24,19 +24,20 @@ class CubeConundrum {
             return Game(gameId, blueCube, redCube, greenCube)
         }
 
-        fun parseGames(input: String): List<Game> = input
-            .split("\n")
-            .filter { it.isNotEmpty() }
-            .map { calculateGameWithMaxSeenOfEachCube(it) }
-            .toList()
+        fun parseGames(input: String): List<Game> =
+            input
+                .split("\n")
+                .filter { it.isNotEmpty() }
+                .map { calculateGameWithMaxSeenOfEachCube(it) }
+                .toList()
 
-        fun calculateTotal(games: List<Game>): Int = games
-            .filter {
-                it.blueCube <= MAX_BLUE_CUBES &&
-                    it.redCube <= MAX_RED_CUBES &&
-                    it.greenCube <= MAX_GREEN_CUBES
-            }
-            .sumOf { it.id }
+        fun calculateTotal(games: List<Game>): Int =
+            games
+                .filter {
+                    it.blueCube <= MAX_BLUE_CUBES &&
+                        it.redCube <= MAX_RED_CUBES &&
+                        it.greenCube <= MAX_GREEN_CUBES
+                }.sumOf { it.id }
 
         fun calculateSumOfPower(games: List<Game>): Int = games.sumOf { it.blueCube * it.redCube * it.greenCube }
     }
