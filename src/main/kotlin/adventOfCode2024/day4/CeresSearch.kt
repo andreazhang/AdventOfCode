@@ -33,16 +33,16 @@ class CeresSearch {
             var newCol = col
 
             for (char in word) {
+                if (outsideMatrixBoundary(newCol, matrix) || outsideMatrixBoundary(newRow, matrix)) {
+                    return false
+                }
+
                 if (matrix[newRow][newCol] != char) {
                     return false
                 }
 
                 newRow += direction.first
                 newCol += direction.second
-
-                if (outsideMatrixBoundary(newCol, matrix) || outsideMatrixBoundary(newRow, matrix)) {
-                    return false
-                }
             }
 
             return true

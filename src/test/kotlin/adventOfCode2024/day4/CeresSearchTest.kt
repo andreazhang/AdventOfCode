@@ -49,7 +49,7 @@ class CeresSearchTest {
 
         val count = CeresSearch.countWordInMatrix(matrix, "XMAS", directions)
 
-        assertEquals(7, count)
+        assertEquals(8, count)
     }
 
     @Test
@@ -62,5 +62,17 @@ class CeresSearchTest {
         val count = CeresSearch.countWordInMatrix(matrix, "XMAS", directions)
 
         assertEquals(2, count)
+    }
+
+    @Test
+    fun `count XMAS in all directions basic`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day4/basic.txt")?.readText() ?: fail()
+        val matrix = CeresSearch.parseInput(input)
+        val directions = listOf(Pair(0, 1), Pair(0, -1), Pair(1, 0), Pair(-1, 0), Pair(-1, 1), Pair(-1, -1), Pair(1, 1), Pair(1, -1))
+
+        val count = CeresSearch.countWordInMatrix(matrix, "XMAS", directions)
+
+        assertEquals(18, count)
     }
 }
