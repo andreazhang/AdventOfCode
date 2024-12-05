@@ -5,7 +5,6 @@ class CeresSearch {
         fun parseInput(input: String): Array<Array<Char>> =
             input
                 .split("\r\n")
-                .toTypedArray()
                 .map { it.toCharArray().toTypedArray() }
                 .toTypedArray()
     }

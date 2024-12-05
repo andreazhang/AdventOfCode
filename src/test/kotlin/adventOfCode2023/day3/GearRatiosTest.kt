@@ -1,8 +1,8 @@
 package adventOfCode2023.day3
 
-import org.example.adventOfCode2023.day3.GearRation.Companion.calculateGearRatio
-import org.example.adventOfCode2023.day3.GearRation.Companion.getGearsNextToSymbol
-import org.example.adventOfCode2023.day3.GearRation.Companion.readMatrix
+import adventOfCode2023.day3.GearRatios.Companion.calculateGearRatio
+import adventOfCode2023.day3.GearRatios.Companion.getGearsNextToSymbol
+import adventOfCode2023.day3.GearRatios.Companion.readMatrix
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import kotlin.test.assertEquals

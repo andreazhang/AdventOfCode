@@ -1,13 +1,12 @@
-package org.example.adventOfCode2023.day3
+package adventOfCode2023.day3
 
-class GearRation {
+class GearRatios {
     companion object {
         fun calculateGearRatio(matrix: Array<Array<Char>>): Int {
             val maxRow = matrix.size - 1
             val maxCol = matrix[0].size - 1
             var starCoordinate: Pair<Int, Int> = Pair(0, 0)
             val gearNextToStar: MutableMap<Pair<Int, Int>, List<Int>> = mutableMapOf()
-            var ratio = 0
 
             var number = 0
             var isGear = false
