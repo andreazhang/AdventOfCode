@@ -40,7 +40,7 @@ class CeresSearch {
                 newRow += direction.first
                 newCol += direction.second
 
-                if (newCol < 0 || newCol >= matrix.size) {
+                if (newCol < 0 || newCol >= matrix.size || newRow < 0 || newRow >= matrix.size) {
                     return false
                 }
             }

@@ -16,9 +16,8 @@ class CeresSearchTest {
         assertEquals('A', matrix[2][0])
     }
 
-
     @Test
-    fun `find XMAX in horizontal line forward and backwards`() {
+    fun `find XMAS in horizontal line forward and backwards`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day4/basic.txt")?.readText() ?: fail()
         val matrix = CeresSearch.parseInput(input)
@@ -27,5 +26,17 @@ class CeresSearchTest {
         val count = CeresSearch.countWordInMatrix(matrix, "XMAS", directions)
 
         assertEquals(5, count)
+    }
+
+    @Test
+    fun `find XMAS in vertical line upwards and downwards`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day4/basic.txt")?.readText() ?: fail()
+        val matrix = CeresSearch.parseInput(input)
+        val directions = listOf(Pair(1, 0), Pair(-1, 0))
+
+        val count = CeresSearch.countWordInMatrix(matrix, "XMAS", directions)
+
+        assertEquals(3, count)
     }
 }
