@@ -23,7 +23,7 @@ class PrintQueueTest {
         val rules = mapOf(61 to listOf(29), 47 to listOf(53, 13, 61, 29))
         val update = listOf(75, 47, 61, 53, 29)
 
-        val valid = PrintQueue.validateRule(rules, update)
+        val valid = PrintQueue.validateUpdate(rules, update)
 
         assertTrue(valid)
     }
@@ -33,7 +33,7 @@ class PrintQueueTest {
         val rules = mapOf(61 to listOf(53), 47 to listOf(53, 13, 61, 29))
         val update = listOf(29, 75, 47, 61, 53)
 
-        val valid = PrintQueue.validateRule(rules, update)
+        val valid = PrintQueue.validateUpdate(rules, update)
 
         assertFalse(valid)
     }
