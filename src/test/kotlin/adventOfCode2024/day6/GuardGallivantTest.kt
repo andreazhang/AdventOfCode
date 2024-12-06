@@ -38,9 +38,9 @@ class GuardGallivantTest {
         val input = ".\r\n^"
         val matrix = GuardGallivant.parse(input)
 
-        val nextPosition = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix)
 
-        assertEquals(Pair(0, 0), nextPosition)
+        assertEquals(Pair(0, 0), guard.position)
     }
 
     @Test
@@ -48,9 +48,9 @@ class GuardGallivantTest {
         val input = ".\r\nv\r\n."
         val matrix = GuardGallivant.parse(input)
 
-        val nextPosition = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix)
 
-        assertEquals(Pair(2, 0), nextPosition)
+        assertEquals(Pair(2, 0), guard.position)
     }
 
     @Test
@@ -58,9 +58,9 @@ class GuardGallivantTest {
         val input = "..\r\n>.\r\n.."
         val matrix = GuardGallivant.parse(input)
 
-        val nextPosition = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix)
 
-        assertEquals(Pair(1, 1), nextPosition)
+        assertEquals(Pair(1, 1), guard.position)
     }
 
     @Test
@@ -68,8 +68,21 @@ class GuardGallivantTest {
         val input = "..\r\n.<\r\n.."
         val matrix = GuardGallivant.parse(input)
 
-        val nextPosition = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix)
 
-        assertEquals(Pair(1, 0), nextPosition)
+        assertEquals(Pair(1, 0), guard.position)
+    }
+
+    @Test
+    fun `rotate guard 90 degrees clockwise if next position is occupied up`() {
+        val input = "#.\r\n^."
+        val matrix = GuardGallivant.parse(input)
+
+        val guard = GuardGallivant.calculateNextPosition(matrix)
+
+        assertAll(
+            { assertEquals('>', guard.direction) },
+            { assertEquals(Pair(1, 1), guard.position) }
+        )
     }
 }

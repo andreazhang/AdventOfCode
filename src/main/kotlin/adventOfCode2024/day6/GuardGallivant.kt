@@ -8,14 +8,14 @@ class GuardGallivant {
                 .map { it.toCharArray().toTypedArray() }
                 .toTypedArray()
 
-        fun calculateNextPosition(matrix: Array<Array<Char>>): Pair<Int, Int> {
+        fun calculateNextPosition(matrix: Array<Array<Char>>): Guard {
             val currentPosition = findGuardPosition(matrix).position
             return when {
-                matrix[currentPosition.first][currentPosition.second] == '^' -> Pair(currentPosition.first - 1, currentPosition.second)
-                matrix[currentPosition.first][currentPosition.second] == 'v' -> Pair(currentPosition.first + 1, currentPosition.second)
-                matrix[currentPosition.first][currentPosition.second] == '>' -> Pair(currentPosition.first, currentPosition.second + 1)
-                matrix[currentPosition.first][currentPosition.second] == '<' -> Pair(currentPosition.first, currentPosition.second - 1)
-                else -> throw Exception("Cannot calculate next position")
+                matrix[currentPosition.first][currentPosition.second] == '^' -> Guard('^', Pair(currentPosition.first - 1, currentPosition.second))
+                matrix[currentPosition.first][currentPosition.second] == 'v' -> Guard('v', Pair(currentPosition.first + 1, currentPosition.second))
+                matrix[currentPosition.first][currentPosition.second] == '>' -> Guard('>', Pair(currentPosition.first, currentPosition.second + 1))
+                matrix[currentPosition.first][currentPosition.second] == '<' -> Guard('<', Pair(currentPosition.first, currentPosition.second - 1))
+                else -> Guard('X', Pair(-1, -1))
             }
         }
 
