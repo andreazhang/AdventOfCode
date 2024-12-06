@@ -14,8 +14,28 @@ class GuardGallivantTest {
         val matrix = GuardGallivant.parse(input)
 
         assertAll(
-            { assertEquals('^', matrix[6][6]) },
+            { assertEquals('^', matrix[6][4]) },
             { assertEquals('#', matrix[6][1]) }
         )
+    }
+
+    @Test
+    fun `find position of guard`() {
+        val input = ".\r\n^"
+        val matrix = GuardGallivant.parse(input)
+
+        val nextPosition = GuardGallivant.findGuardPosition(matrix)
+
+        assertEquals(Pair(1, 0), nextPosition)
+    }
+
+    @Test
+    fun `calculate guard next position move up`() {
+        val input = ".\r\n^"
+        val matrix = GuardGallivant.parse(input)
+
+        val nextPosition = GuardGallivant.calculateNextPosition(matrix)
+
+        assertEquals(Pair(0, 0), nextPosition)
     }
 }
