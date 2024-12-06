@@ -19,7 +19,10 @@ class PrintQueue {
             return SafetyManual(rules, updates)
         }
 
-        fun validateUpdate(rules: Map<Int, List<Int>>, update: List<Int>): Boolean {
+        fun validateUpdate(
+            rules: Map<Int, List<Int>>,
+            update: List<Int>,
+        ): Boolean {
             for ((index, page) in update.withIndex()) {
                 update.subList(0, index).forEach {
                     if (rules[page]?.contains(it) == true) {
@@ -31,24 +34,24 @@ class PrintQueue {
             return true
         }
 
-        fun sumMiddlePages(validUpdates: List<List<Int>>): Int {
-            return validUpdates.sumOf { it[it.size / 2] }
-        }
+        fun sumMiddlePages(validUpdates: List<List<Int>>): Int = validUpdates.sumOf { it[it.size / 2] }
 
-        fun fixIncorrectUpdate(rules: Map<Int, List<Int>>, incorrectUpdate: List<Int>): List<Int> {
+        fun fixIncorrectUpdate(
+            rules: Map<Int, List<Int>>,
+            incorrectUpdate: List<Int>,
+        ): List<Int> {
             val update = incorrectUpdate.toMutableList()
             while (!validateUpdate(rules, update)) {
                 val pair = findNumbersToSwap(update, rules)
                 update.remove(pair.first)
-                update.add(update.indexOf(pair.second)+1, pair.first)
-
+                update.add(update.indexOf(pair.second) + 1, pair.first)
             }
             return update
         }
 
         private fun findNumbersToSwap(
             update: List<Int>,
-            rules: Map<Int, List<Int>>
+            rules: Map<Int, List<Int>>,
         ): Pair<Int, Int> {
             for ((index, page) in update.withIndex()) {
                 update.subList(0, index).forEach { updatePage ->
@@ -62,21 +65,21 @@ class PrintQueue {
             return Pair(0, 0)
         }
 
-        fun fixIncorrectUpdates(rules: Map<Int, List<Int>>, invalidUpdates: List<List<Int>>): List<List<Int>> {
-            return invalidUpdates.map { fixIncorrectUpdate(rules, it) }
-        }
+        fun fixIncorrectUpdates(
+            rules: Map<Int, List<Int>>,
+            invalidUpdates: List<List<Int>>,
+        ): List<List<Int>> =
+            invalidUpdates.map {
+                fixIncorrectUpdate(rules, it)
+            }
     }
 
     class SafetyManual(
         val rules: Map<Int, List<Int>>,
         val updates: List<List<Int>>,
     ) {
-        fun getAllValidUpdates(): List<List<Int>> {
-            return updates.filter { validateUpdate(rules, it) }
-        }
+        fun getAllValidUpdates(): List<List<Int>> = updates.filter { validateUpdate(rules, it) }
 
-        fun getAllInvalidUpdates(): List<List<Int>> {
-            return updates.filter { !validateUpdate(rules, it) }
-        }
+        fun getAllInvalidUpdates(): List<List<Int>> = updates.filter { !validateUpdate(rules, it) }
     }
 }

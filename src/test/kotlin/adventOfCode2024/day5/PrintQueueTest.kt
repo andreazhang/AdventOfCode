@@ -47,7 +47,7 @@ class PrintQueueTest {
         val validUpdates = safetyManual.getAllValidUpdates()
 
         assertEquals(3, validUpdates.size)
-        assertEquals(listOf(75,47,61,53,29), validUpdates.first())
+        assertEquals(listOf(75, 47, 61, 53, 29), validUpdates.first())
     }
 
     @Test
@@ -83,7 +83,7 @@ class PrintQueueTest {
         val invalidUpdates = safetyManual.getAllInvalidUpdates()
 
         assertEquals(3, invalidUpdates.size)
-        assertEquals(listOf(75,97,47,61,53), invalidUpdates.first())
+        assertEquals(listOf(75, 97, 47, 61, 53), invalidUpdates.first())
     }
 
     @Test
@@ -91,11 +91,11 @@ class PrintQueueTest {
         val input =
             this::class.java.getResource("/adventOfCode2024/day5/basic.txt")?.readText() ?: fail()
         val safetyManual = PrintQueue.parse(input)
-        val incorrectUpdate = listOf(75,97,47,61,53)
+        val incorrectUpdate = listOf(75, 97, 47, 61, 53)
 
         val fixedUpdate = PrintQueue.fixIncorrectUpdate(safetyManual.rules, incorrectUpdate)
 
-        assertEquals(listOf(97,75,47,61,53), fixedUpdate)
+        assertEquals(listOf(97, 75, 47, 61, 53), fixedUpdate)
     }
 
     @Test
@@ -107,9 +107,9 @@ class PrintQueueTest {
 
         val fixedUpdates = PrintQueue.fixIncorrectUpdates(safetyManual.rules, invalidUpdates)
 
-        assertEquals(listOf(97,75,47,61,53), fixedUpdates.first())
-        assertEquals(listOf(61,29,13), fixedUpdates[1])
-        assertEquals(listOf(97,75,47,29,13), fixedUpdates[2])
+        assertEquals(listOf(97, 75, 47, 61, 53), fixedUpdates.first())
+        assertEquals(listOf(61, 29, 13), fixedUpdates[1])
+        assertEquals(listOf(97, 75, 47, 29, 13), fixedUpdates[2])
     }
 
     @Test
