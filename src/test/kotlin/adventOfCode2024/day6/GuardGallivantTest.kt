@@ -23,13 +23,14 @@ class GuardGallivantTest {
 
     @ParameterizedTest
     @ValueSource(chars = ['^', 'v', '>', '<'])
-    fun `find position of guard`(guard: Char) {
-        val input = ".\r\n$guard"
+    fun `find position of guard`(guardDirection: Char) {
+        val input = ".\r\n$guardDirection"
         val matrix = GuardGallivant.parse(input)
 
-        val nextPosition = GuardGallivant.findGuardPosition(matrix)
+        val guard = GuardGallivant.findGuardPosition(matrix)
 
-        assertEquals(Pair(1, 0), nextPosition)
+        assertEquals(guardDirection, guard.direction)
+        assertEquals(Pair(1, 0), guard.position)
     }
 
     @Test
