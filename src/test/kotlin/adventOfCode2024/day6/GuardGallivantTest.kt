@@ -2,6 +2,8 @@ package adventOfCode2024.day6
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
@@ -19,9 +21,10 @@ class GuardGallivantTest {
         )
     }
 
-    @Test
-    fun `find position of guard`() {
-        val input = ".\r\n^"
+    @ParameterizedTest
+    @ValueSource(chars = ['^', 'v', '>', '<'])
+    fun `find position of guard`(guard: Char) {
+        val input = ".\r\n$guard"
         val matrix = GuardGallivant.parse(input)
 
         val nextPosition = GuardGallivant.findGuardPosition(matrix)

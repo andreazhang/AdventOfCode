@@ -16,7 +16,7 @@ class GuardGallivant {
         fun findGuardPosition(matrix: Array<Array<Char>>): Pair<Int, Int> {
             for (row in matrix.indices) {
                 for (col in matrix[0].indices) {
-                    if (matrix[row][col] == '^') {
+                    if (matrix[row][col] in listOf('^', 'v', '>', '<')) {
                         return Pair(row, col)
                     }
                 }
