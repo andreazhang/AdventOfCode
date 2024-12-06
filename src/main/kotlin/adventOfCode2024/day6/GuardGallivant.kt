@@ -46,7 +46,6 @@ class GuardGallivant {
             var tmpGuard = guard
 
             while (tmpGuard.direction != 'X') {
-                println("calc ${tmpGuard.position} ${tmpGuard.direction}")
                 val next = calculateNextPosition(matrix, tmpGuard)
                 positions = positions.plus(next.position)
                 tmpGuard = next

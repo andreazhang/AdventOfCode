@@ -126,7 +126,7 @@ class GuardGallivantTest {
     }
 
     @Test
-    fun `calculate distinct position guard has been`() {
+    fun `calculate distinct position guard has been - basic`() {
         val input =
             this::class.java.getResource("/adventOfCode2024/day6/basic.txt")?.readText() ?: fail()
         val matrix = GuardGallivant.parse(input)
@@ -135,5 +135,17 @@ class GuardGallivantTest {
         val positions = GuardGallivant.calculateDistinctPositions(matrix, guard)
 
         assertEquals(41, positions.size)
+    }
+
+    @Test
+    fun `calculate distinct position guard has been - full`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day6/full.txt")?.readText() ?: fail()
+        val matrix = GuardGallivant.parse(input)
+        val guard = GuardGallivant.findGuardPosition(matrix)
+
+        val positions = GuardGallivant.calculateDistinctPositions(matrix, guard)
+
+        assertEquals(5329, positions.size)
     }
 }
