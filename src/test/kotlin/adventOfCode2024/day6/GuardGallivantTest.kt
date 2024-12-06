@@ -38,7 +38,7 @@ class GuardGallivantTest {
         val input = ".\r\n^"
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertEquals(Pair(0, 0), guard.position)
     }
@@ -48,7 +48,7 @@ class GuardGallivantTest {
         val input = ".\r\nv\r\n."
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertEquals(Pair(2, 0), guard.position)
     }
@@ -58,7 +58,7 @@ class GuardGallivantTest {
         val input = "..\r\n>.\r\n.."
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertEquals(Pair(1, 1), guard.position)
     }
@@ -68,7 +68,7 @@ class GuardGallivantTest {
         val input = "..\r\n.<\r\n.."
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertEquals(Pair(1, 0), guard.position)
     }
@@ -78,7 +78,7 @@ class GuardGallivantTest {
         val input = "#.\r\n^."
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertAll(
             { assertEquals('>', guard.direction) },
@@ -91,7 +91,7 @@ class GuardGallivantTest {
         val input = "..\r\n.v\r\n##"
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertAll(
             { assertEquals('<', guard.direction) },
@@ -104,7 +104,7 @@ class GuardGallivantTest {
         val input = "..\r\n>#\r\n.."
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertAll(
             { assertEquals('v', guard.direction) },
@@ -117,11 +117,23 @@ class GuardGallivantTest {
         val input = "..\r\n#<\r\n.."
         val matrix = GuardGallivant.parse(input)
 
-        val guard = GuardGallivant.calculateNextPosition(matrix)
+        val guard = GuardGallivant.calculateNextPosition(matrix, GuardGallivant.findGuardPosition(matrix))
 
         assertAll(
             { assertEquals('^', guard.direction) },
             { assertEquals(Pair(0, 1), guard.position) }
         )
+    }
+
+    @Test
+    fun `calculate distinct position guard has been`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day6/basic.txt")?.readText() ?: fail()
+        val matrix = GuardGallivant.parse(input)
+        val guard = GuardGallivant.findGuardPosition(matrix)
+
+        val positions = GuardGallivant.calculateDistinctPositions(matrix, guard)
+
+        assertEquals(41, positions.size)
     }
 }

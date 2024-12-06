@@ -8,26 +8,22 @@ class GuardGallivant {
                 .map { it.toCharArray().toTypedArray() }
                 .toTypedArray()
 
-        fun calculateNextPosition(matrix: Array<Array<Char>>): Guard {
-            val curr = findGuardPosition(matrix).position
+        fun calculateNextPosition(matrix: Array<Array<Char>>, guard: Guard): Guard {
+            val curr = guard.position
             val up = Pair(curr.first - 1, curr.second)
             val right = Pair(curr.first, curr.second + 1)
             val down = Pair(curr.first + 1, curr.second)
             val left = Pair(curr.first, curr.second - 1)
-            return when {
-                at(matrix, curr) == '^' -> {
-                    if (at(matrix, up) == '#') Guard('>', right) else Guard('^', up)
+            return try {
+                when (guard.direction) {
+                    '^' -> if (at(matrix, up) == '#') Guard('>', right) else Guard('^', up)
+                    'v' -> if (at(matrix, down) == '#') Guard('<', left) else Guard('v', down)
+                    '>' -> if (at(matrix, right) == '#') Guard('v', down) else Guard('>', right)
+                    '<' -> if (at(matrix, left) == '#') Guard('^', up) else Guard('<', left)
+                    else -> throw Exception("Unclear guard direction ${guard.direction}")
                 }
-                at(matrix, curr) == 'v' -> {
-                    if (at(matrix, down) == '#') Guard('<', left) else Guard('v', down)
-                }
-                at(matrix, curr) == '>' -> {
-                    if (at(matrix, right) == '#') Guard('v', down) else Guard('>', right)
-                }
-                at(matrix, curr) == '<' -> {
-                    if (at(matrix, left) == '#') Guard('^', up) else Guard('<', left)
-                }
-                else -> Guard('X', Pair(-1, -1))
+            } catch (e: IndexOutOfBoundsException) {
+                Guard('X', Pair(curr.first, curr.second))
             }
         }
 
@@ -43,6 +39,20 @@ class GuardGallivant {
                 }
             }
             throw Exception("Cannot find new guard position")
+        }
+
+        fun calculateDistinctPositions(matrix: Array<Array<Char>>, guard: Guard): Set<Pair<Int, Int>> {
+            var positions = setOf<Pair<Int, Int>>()
+            var tmpGuard = guard
+
+            while (tmpGuard.direction != 'X') {
+                println("calc ${tmpGuard.position} ${tmpGuard.direction}")
+                val next = calculateNextPosition(matrix, tmpGuard)
+                positions = positions.plus(next.position)
+                tmpGuard = next
+            }
+
+            return positions
         }
     }
 
