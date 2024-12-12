@@ -12,11 +12,15 @@ class BridgeRepair {
         }
 
         fun isValidOperation(total: Int, values: List<Int>): Boolean {
-            if (values.sum() == total || values.reduce { acc, i -> acc * i } == total) {
+            if (values.isEmpty()) {
+                return false
+            }
+            if (values.size == 1 && values[0] == total) {
                 return true
             }
 
-            return false
+            return isValidOperation(total - values.last(), values.dropLast(1)) ||
+                    isValidOperation(total / values.last(), values.dropLast(1))
         }
 
         class CalibrationEquations(val operations: Map<Int, List<Int>>) {

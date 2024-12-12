@@ -48,4 +48,24 @@ class BridgeRepairTest {
 
         assertTrue(isValid)
     }
+
+    @Test
+    fun `operation is valid if it's the mixture of sum and multiplication of the values`() {
+        val total = 191
+        val values = listOf(10, 19, 1)
+
+        val isValid = BridgeRepair.isValidOperation(total, values)
+
+        assertTrue(isValid)
+    }
+
+    @Test
+    fun `operation is not valid if it's not the mixture of sum and multiplication of the values`() {
+        val total = 192
+        val values = listOf(10, 19, 1)
+
+        val isValid = BridgeRepair.isValidOperation(total, values)
+
+        assertTrue(isValid)
+    }
 }
