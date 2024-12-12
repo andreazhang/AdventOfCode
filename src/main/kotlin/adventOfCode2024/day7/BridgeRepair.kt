@@ -11,6 +11,14 @@ class BridgeRepair {
             return CalibrationEquations(operations)
         }
 
+        fun isValidOperation(total: Int, values: List<Int>): Boolean {
+            if (values.sum() == total || values.reduce { acc, i -> acc * i } == total) {
+                return true
+            }
+
+            return false
+        }
+
         class CalibrationEquations(val operations: Map<Int, List<Int>>) {
             fun getOperationsPossibleByAdditionOrMultiplication(): Map<Int, List<Int>> {
                 return operations.filter {

@@ -2,6 +2,7 @@ package adventOfCode2024.day7
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import kotlin.test.fail
 
 class BridgeRepairTest {
@@ -26,5 +27,25 @@ class BridgeRepairTest {
         val operations = calibrationEquations.getOperationsPossibleByAdditionOrMultiplication()
 
         assertEquals(5, operations.size)
+    }
+
+    @Test
+    fun `operation is valid if it's the sum of the values`() {
+        val total = 29
+        val values = listOf(10, 19)
+
+        val isValid = BridgeRepair.isValidOperation(total, values)
+
+        assertTrue(isValid)
+    }
+
+    @Test
+    fun `operation is valid if it's the multiplication of the values`() {
+        val total = 190
+        val values = listOf(10, 19)
+
+        val isValid = BridgeRepair.isValidOperation(total, values)
+
+        assertTrue(isValid)
     }
 }
