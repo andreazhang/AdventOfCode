@@ -14,5 +14,6 @@ class BridgeRepairTest {
 
         assertEquals(9, calibrationEquations.operations.size)
         assertEquals(190, calibrationEquations.operations.keys.first())
+        assertEquals(listOf(11, 6, 16, 20), calibrationEquations.operations.values.last())
     }
 }
