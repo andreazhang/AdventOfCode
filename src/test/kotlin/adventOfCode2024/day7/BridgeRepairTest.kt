@@ -16,4 +16,15 @@ class BridgeRepairTest {
         assertEquals(190, calibrationEquations.operations.keys.first())
         assertEquals(listOf(11, 6, 16, 20), calibrationEquations.operations.values.last())
     }
+
+    @Test
+    fun `filter operations that are possible by just adding or multiplying`() {
+        val input =
+            this::class.java.getResource("/adventOfCode2024/day7/basic.txt")?.readText() ?: fail()
+        val calibrationEquations = BridgeRepair.parseInput(input)
+
+        val operations = calibrationEquations.getOperationsPossibleByAdditionOrMultiplication()
+
+        assertEquals(5, operations.size)
+    }
 }

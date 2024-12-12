@@ -12,6 +12,13 @@ class BridgeRepair {
         }
 
         class CalibrationEquations(val operations: Map<Int, List<Int>>) {
+            fun getOperationsPossibleByAdditionOrMultiplication(): Map<Int, List<Int>> {
+                return operations.filter {
+                    val sumTotal = it.value.sum()
+                    val mulTotal = it.value.reduce { acc, i -> acc * i }
+                    it.key in sumTotal..mulTotal
+                }
+            }
 
         }
     }
