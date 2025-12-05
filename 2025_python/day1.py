@@ -11,29 +11,32 @@ L99
 R14
 L82
 """
+input = getInputData(1)
 
-fullInput = getInputData(1)
+dialTurnCommands = input.splitlines()
 
-dial = 50
+dial = 50 # starting position
+dialSize = 100 # size of the dial (0 to 99)
 
-commands = fullInput.splitlines()
+zeroOccurrencesAtDialTurnEnd = 0
+zeroOccurrencesDuringDialTurn = 0
 
-zeroOccurrences = 0
-
-for command in commands:
-    direction = command[0]
+for command in dialTurnCommands:
+    turnDirection = command[0]
     turnValue = int(command[1:])
-    while turnValue > 0:
-        if direction == 'L':
+    for i in range(turnValue):
+        if turnDirection == 'L':
             dial -= 1
         else:
             dial += 1
         if dial < 0:
-            dial += 100
-        elif dial > 99:
-            dial -= 100
+            dial += dialSize
+        elif dial >= dialSize:
+            dial -= dialSize
         if dial == 0:
-            zeroOccurrences += 1
-        turnValue -= 1
+            zeroOccurrencesDuringDialTurn += 1
+    if dial == 0:
+        zeroOccurrencesAtDialTurnEnd += 1
 
-print(zeroOccurrences)
+print("Part 1:", zeroOccurrencesAtDialTurnEnd)
+print("Part 2:", zeroOccurrencesDuringDialTurn)
