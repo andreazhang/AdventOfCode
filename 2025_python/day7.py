@@ -52,3 +52,43 @@ for line in grid:
     print(''.join(line))
 
 print("Part 1: Number of tachyon beams splits =", numberOfTachyonBeamsSplits)
+
+grid = []
+for line in input.splitlines():
+    startPoint = line.index('S') if 'S' in line else startPoint
+    grid.append(list(line))
+
+for line in grid:
+    print(''.join(line))
+
+print("Filling grid with tachyon beam counts...")
+
+for y, line in enumerate(grid):
+    for x, cell in enumerate(line):
+        if cell == 'S':
+            grid[y+1][x] = 1
+        if isinstance(cell, int):
+            if y < height - 1 and grid[y+1][x] == '.':
+                grid[y+1][x] = cell
+            elif y < height - 1 and isinstance(grid[y+1][x], int):
+                grid[y+1][x] += cell
+            elif y < height - 1 and grid[y+1][x] == '^':
+                if y < height - 1 and grid[y+1][x-1] == '.':
+                    grid[y+1][x-1] = 0
+                if y < height - 1 and grid[y+1][x+1] == '.':
+                    grid[y+1][x+1] = 0
+                grid[y+1][x-1] += cell
+                grid[y+1][x+1] += cell
+
+for line in grid:
+    string = ""
+    for cell in line:
+        string += str(cell)
+    print(string)
+
+totalPaths = 0
+for cell in grid[height-1]:
+    if isinstance(cell, int):
+        totalPaths += cell
+
+print("Part 2: Total number of paths for tachyon beam to reach bottom =", totalPaths)
