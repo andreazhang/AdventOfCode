@@ -36,7 +36,6 @@ for x in range(width):
         problemResult = 1
         for number in problemNumbers:
             problemResult *= number
-        
     elif problemOperation == '+':
         for number in problemNumbers:
             problemResult += number
