@@ -22,8 +22,8 @@ input = """162,817,812
 984,92,344
 425,690,689"""
 numberOfConnectionsToDo = 10
-# input = getInputData(8)
-# numberOfConnectionsToDo = 1000
+input = getInputData(8)
+numberOfConnectionsToDo = 1000
 
 junctionBoxes = []
 for line in input.splitlines():
@@ -41,8 +41,8 @@ for i in range(len(junctionBoxes) - 1):
         distances.append((distance, box1, box2))
 
 distances.sort()
-for distance, box1, box2 in distances[:]:
-    print(f"Distance: {distance:.2f} between boxes {box1} and {box2}")
+# for distance, box1, box2 in distances[:]:
+#     print(f"Distance: {distance:.2f} between boxes {box1} and {box2}")
 
 def mergeCircuits(circuits):
     for i in range(len(circuits) - 1):
@@ -50,7 +50,7 @@ def mergeCircuits(circuits):
             circuit1 = circuits[i]
             circuit2 = circuits[j]
             if any(box in circuit1 for box in circuit2):
-                print(f"Merging circuits: {circuit1} and {circuit2}")
+                # print(f"Merging circuits: {circuit1} and {circuit2}")
                 circuit1.extend(box for box in circuit2 if box not in circuit1)
                 del circuits[j]
                 mergeCircuits(circuits)
@@ -61,7 +61,7 @@ def mergeCircuits(circuits):
 
 circuits = []
 for distance, box1, box2 in distances[:numberOfConnectionsToDo]:
-    print(f"Processing distance: {distance:.2f} between boxes {box1} and {box2}")
+    # print(f"Processing distance: {distance:.2f} between boxes {box1} and {box2}")
     # print("Current circuits:", circuits)
     for circuit in circuits:
         if box1 in circuit and box2 in circuit:
@@ -77,10 +77,10 @@ for distance, box1, box2 in distances[:numberOfConnectionsToDo]:
 
 mergeCircuits(circuits)
 
-print("Final circuits:")
 circuits.sort(key=lambda c: len(c), reverse=True)
-for circuit in circuits[:10]:
-    print(len(circuit), circuit)
+# print("Final circuits:")
+# for circuit in circuits[:10]:
+#     print(len(circuit), circuit)
 
 circuitSizes = [len(circuit) for circuit in circuits]
 circuitSizes.sort(reverse=True)
@@ -98,3 +98,40 @@ assert circuitTotal != 5865 # too low
 assert circuitTotal != 6120 # too low
 
 print("Part 1: Circuit sizes multiplied together =", circuitTotal)
+
+finalCoordinateMultiplication = 0
+circuits = []
+for distance, box1, box2 in distances[:]:
+    # print(f"Processing distance: {distance:.2f} between boxes {box1} and {box2}")
+    # print("Current circuits:", circuits)
+    circuit1 = []
+    circuit2 = []
+    for circuit in circuits:
+        if box1 in circuit:
+            circuit1 = circuit
+        if box2 in circuit:
+            circuit2 = circuit
+    # both are empty so need to add a new circuit
+    if not circuit1 and not circuit2:
+        circuits.append([box1, box2])
+    # both found in same circuit so do nothing
+    elif circuit1 and circuit2 and circuit1 == circuit2:
+        pass
+    # one found so add the other to it
+    elif circuit1 and not circuit2:
+        circuit1.append(box2)
+    elif circuit2 and not circuit1:
+        circuit2.append(box1)
+    # both found so need to merge circuits
+    else:
+        # print(f"Merging circuits: {circuit1} and {circuit2}")
+        circuit1.extend(box for box in circuit2 if box not in circuit1)
+        circuits.remove(circuit2)
+        # print(f". Merging boxes: {box1} and {box2} = {len(circuits)} {circuits}")
+    if len(circuits[0]) == len(junctionBoxes):
+        # print(f"All junction boxes connected! {box1} to {box2} at distance {distance}")
+        finalCoordinateMultiplication = box1[0] * box2[0]
+        break
+
+print("Part 2: Final coordinate multiplication =", finalCoordinateMultiplication)
+    
